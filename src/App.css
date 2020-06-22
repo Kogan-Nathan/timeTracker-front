@@ -1,0 +1,55 @@
+.App {
+  text-align: center;
+}
+
+.logo{
+  font-size: 28px;
+  font-weight: 600;
+  display: flex;
+  float: left;
+  margin-left: 20px;
+}
+
+.header{
+  background-color: #999999;
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer{
+  background-color: #999999;
+  padding: 20px;
+}
+
+.buttons-area{
+  display: flex;
+  float: right;
+}
+.login-butt, .signup-butt{
+  margin: 20px;
+}
+
+.hidden-flag{
+  visibility: hidden;
+}
+
+ul{
+  list-style: none;
+  padding: 0;
+}
+
+button{
+  cursor: pointer;
+}
+
+input:focus, button:focus{
+  outline: none;
+}
+
+.input, .button{
+  border: 1px solid #999999;
+  border-radius: 7px;
+  padding: 10px;
+}
+
