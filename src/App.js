@@ -1,17 +1,27 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
 import './App.css';
-import Header from './Components/Header'
-import Footer from './Components/Footer'
 import Login from './Components/Login'
+import Header from './Components/Header'
+import Footer from './Components/Footer';
+import Admin from './Components/AdminPage';
 
 function App() {
   return (
     <div className="App">
       <Router>
+        {/* Header */}
         <Header/>
         <Switch>
-          <Route exact path="/login" component={()=>{return <Login/>}}/>
+          {/* Routes */}
+          <Route exact path="/login" component={()=>{return <Login/>
+          }}/>
+          <Route exact path="/admin" component={()=>{return <Admin displayPage={"Users"} class={true}/>
+          }}/>
+          <Route exact path="/admin/users" component={()=>{return <Admin displayPage={"Users"} class={true}/>
+          }}/>
+          <Route exact path="/admin/projects" component={()=>{return <Admin displayPage={"Projects"}/>
+          }}/>
         </Switch>
         <Footer/>
       </Router>

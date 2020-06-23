@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
+import { useSelector } from 'react-redux'
 import {Link} from 'react-router-dom'
-
 
 export default function Login(){
     const [email, setEmail] = useState()
@@ -10,6 +10,10 @@ export default function Login(){
     const [isPasswordValid, setIsPasswordValid] = useState(false)
     const [wrongPasswordSpan, setWrongPasswordSpan] = useState()
     const [isLogged, setIsLogged] = useState(false)
+
+    const AdminInfo = useSelector(state=>state.Admin)
+    const UsersInfo = useSelector(state=>state.Users)
+
 
     //----------------------------------------------------------
     //checkValidEmail & checkValidPassword both check for a specific pattern
@@ -36,9 +40,32 @@ export default function Login(){
     //----------------------------------------------------------
     
     const validLogIn=()=>{
-        // checks if email and password are valid.
+        // checks if email and password are found.
         // if false, displays span#"wrong-email" & span#"wrong-password"
         // if true, sets isLogged to true and displays a different page
+        if(AdminInfo.email===email&&AdminInfo.password===password){
+            window.location = "/admin";
+        }
+        else {
+            if(UsersInfo.length===0){
+                alert('No matches found')
+            }
+            else{
+                let UserIndex = UsersInfo.findIndex(user => user.email === email)
+                try {
+                    if(UsersInfo[UserIndex].email===email&&UsersInfo[UserIndex].password===password){
+                        // dispatch(isLogged());
+                        // dispatch(userIndex(UserIndex))
+                    }
+                    else{
+                        alert("wrong Password")
+                    }
+                } 
+                catch {
+                    alert('Sorry, wrong Email')
+                }
+            }
+        }
     }
 
     return(
