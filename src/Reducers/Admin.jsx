@@ -1,25 +1,27 @@
-const AdminReducer = (state = {name:"Admin Admin", password:"timetrackeradmin1234", email:"timeAdmin@zangula.com", pojects:[], clients:[]}, action)=> {
+const AdminReducer = (state = {name:"Admin Admin", password:"timetrackeradmin1234", email:"timeAdmin@zangula.com", projects:[]}, action)=> {
     switch (action.type) {
-            case 'ADD_NEW_PROJECT':
-                state.pojects.push(action.projectNameDate)
-                return state=[...state]
-            // case 'DELETE_EXISTING_PROJECT':
-            //     let temp = state.projects.filter((value,index)=>(index!==action.projectIndexData));
-            //     state.projects=temp
-            //     return state=[...state]
-            case 'DELETE_MILTIPLE_PROJECTS':
+            case 'ADMIN_NEW_PROJECT':
+                return {...state, projects: [{project : action.projectNameData, client : action.clientNameData},...state.projects]}
+            case 'ADMIN_DELETE_PROJECTS':
                 // assuming we are sending the users name value as array "projectsToBeDeletedData" 
-                let projectsToBeDeleted=action.projectsToBeDeletedData
-                let tempProjects = state.projects.filter(value => !projectsToBeDeleted.includes(value));
-                state.projects=tempProjects
-                return state=[...state]
-            case 'ADD_NEW_CLIENTS':
-                state.clients.push(action.clientNameDate)
-                return state=[...state]
-            case 'DELETE_EXISTING_CLIENT':
-                let tempClients = state.clients.filter((value,index)=>(index!==action.clientIndexData));
-                state.clients=tempClients
-                return state=[...state]
+                // let projectsToBeDeleted=action.projectsToBeDeletedData
+                let tempProjects = state.projects.filter(value => !action.projectsToBeDeletedData.includes(value.project));
+                return {...state, projects: tempProjects}
+            case 'ADMIN_UPDATE_PROJECT' :
+                let tempProjectsArray = [...state.projects];
+                tempProjectsArray[action.projectIndexData].project = action.projectNameData
+                return {...state, projects: tempProjectsArray}             
+            case 'ADMIN_UPDATE_CLIENT' :
+                let tempArray = [...state.projects];
+                tempArray[action.projectIndexData].client = action.clientNameData
+                return {...state, projects: tempArray}
+            // case 'ADD_NEW_CLIENT':
+            //     return Object.assign({}, state, {
+            //         clients: state.clients.concat(action.clientNameData)
+            //       })
+            // case 'ADMIN_DELETE_CLIENT':
+            //     let tempClients = state.clients.filter((value,index)=>(index!==action.clientIndexData));
+            //     return {...state, projects: tempClients}
         default:
             return state
     }

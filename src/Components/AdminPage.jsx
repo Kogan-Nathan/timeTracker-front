@@ -1,11 +1,13 @@
 import React,{useState} from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import UserArea from './UserArea'
 import ProjectArea from './ProjectArea'
 import {Link} from 'react-router-dom'
 // import { GoSearch } from 'react-icons/go';
 import { GoTriangleRight } from 'react-icons/go';
 import { FaDollarSign } from 'react-icons/fa';
+import { addNewProject, adminNewProject, deleteProjects, adminDeleteProjects, adminDeleteUsers } from '../Actions';
+
 
 export default function AdminPage(props) {
     const [UsersToBeDeleted, setUsersToBeDeleted] = useState([])
@@ -17,23 +19,12 @@ export default function AdminPage(props) {
     const [ProjectClient, setProjectClient] = useState()
     const [ProjectManager, setProjectManager] = useState()
     const [ProjectCost, setProjectCost] = useState(false)
-    const [ProjectDate, setProjectDate] = useState()
+    // const [ProjectDate, setProjectDate] = useState(new Date())
 
+    const dispatch = useDispatch();
     const users = useSelector(state=>state.Users)
     const projects = useSelector(state=>state.Projects)
 
-    //----------------------------------------------------------    
-    const isDisabled=()=>{
-        if(UsersToBeDeleted.length===0){
-            return true
-        }
-        else if(UsersToBeDeleted.length!==0){
-            return false
-        }
-        // currently checks only usersToBeDeleted array
-        //considering mergeing both arrays (usersToBeDeleted & projectsToBeDeleted => valuesToBeDeleted)
-        //so this function will work properly
-    }
     //----------------------------------------------------------    
     function UpdateUsersToBeDeleted(UsersID){
         if(UsersToBeDeleted.length===0){
@@ -72,27 +63,25 @@ export default function AdminPage(props) {
         if(props.displayPage==="Users"){
             const tempArray = users.filter(value => {
                 let lowerCaseName = value.name.toLowerCase();
-                 return lowerCaseName.includes(e.target.value);}).map(value => {
-                     return value;});
+                 return lowerCaseName.includes(e.target.value);})
                      setTemporaryArray(tempArray)
                     }
         if(props.displayPage==="Projects"){
             const tempArray = projects.filter(value => {
                 let lowerCaseName = value.projectName.toLowerCase();
-                 return lowerCaseName.includes(e.target.value);}).map(value => {
-                     return value;});
+                 return lowerCaseName.includes(e.target.value);})
                      setTemporaryArray(tempArray)
         }
-
         setSearchBar(e.target.value)
     }
     //----------------------------------------------------------
     const sendDeleteInfo=()=>{        
         if(props.displayPage==="Users"){
-            //dispatch delete users
+            dispatch(adminDeleteUsers(UsersToBeDeleted))
         }
-        else if(props.displayPage==="Projects"){
-            //dispatch delete projects
+        if(props.displayPage==="Projects"){            
+            dispatch(deleteProjects(ProjectsToBeDeleted))
+            dispatch(adminDeleteProjects(ProjectsToBeDeleted))
         }
     }
     //----------------------------------------------------------
@@ -101,11 +90,8 @@ export default function AdminPage(props) {
             if(ProjectName!==undefined){
                 if(ProjectClient!==undefined){
                     if(ProjectManager!==undefined){
-                        // dispatch projectManager
-                        // dispatch projectCost
-                        // dispatch projectClient
-                        // dispatch projectName
-                        // dispatch currentDate
+                        dispatch(addNewProject(ProjectName, ProjectClient, ProjectManager, new Date(), ProjectCost))
+                        dispatch(adminNewProject(ProjectName))
                     }
                     else{
                         alert("Sorry, Project must contain Project Manager")
@@ -122,20 +108,22 @@ export default function AdminPage(props) {
         else{
             let projectIndex = projects.findIndex(value=> value.projectName === ProjectName)
             if(projectIndex===-1){
-                if(ProjectClient!==undefined){
-                    if(ProjectManager!==undefined){
-                        // dispatch projectManager
-                        // dispatch projectCost
-                        // dispatch projectClient
-                        // dispatch projectName
-                        // dispatch currentDate
-                    }
-                    else{
-                        alert("Sorry, Project must contain Project Manager")
-                    }
+                if(ProjectName===undefined){
+                    alert("Sorry, Project must contain Name")
                 }
                 else{
-                    alert("Sorry, Project must contain Client")
+                    if(ProjectClient!==undefined){
+                        if(ProjectManager!==undefined){
+                            dispatch(addNewProject(ProjectName, ProjectClient, ProjectManager, new Date(), ProjectCost))
+                            dispatch(adminNewProject(ProjectName, ProjectClient))
+                        }
+                        else{
+                            alert("Sorry, Project must contain Project Manager")
+                        }
+                    }
+                    else{
+                        alert("Sorry, Project must contain Client")
+                    }
                 }
             }
             else{
@@ -148,13 +136,13 @@ export default function AdminPage(props) {
         if(props.displayPage==="Users"){
             if(SearchBar!==""){
                 return(
-                    (TemporaryArray.map((value,index)=>{return <UserArea key={"user"+index} user={value} update={UpdateUsersToBeDeleted}/>}))
+                    (TemporaryArray.map(value=>{return <UserArea key={value.id} user={value} update={UpdateUsersToBeDeleted}/>}))
                 )   
             } //if the search isnt empty it is showing the search result
             // and if it is empty it is showing the original users DB
             else{
                 return(
-                    (users.map((value,index)=>{return <UserArea key={"user"+index} user={value} update={UpdateUsersToBeDeleted}/>}))
+                    (users.map(value=>{return <UserArea key={value.id} user={value} update={UpdateUsersToBeDeleted}/>}))
                 )                
             }
         }
@@ -163,15 +151,15 @@ export default function AdminPage(props) {
                 return(
                     <div>
                         <div className="justify border-simple">
-                            <GoTriangleRight className="color"/>
+                            <GoTriangleRight className="color-zan"/>
                             <input type="text" placeholder="Project Name" onChange={(e)=>{setProjectsName(e.target.value)}}/>
-                            <FaDollarSign className={ProjectCost? "color cursor" : "cursor"} onClick={()=>{setProjectCost(!ProjectCost)}}/>
+                            <FaDollarSign className={ProjectCost? "color-zan cursor" : "cursor color"} onClick={()=>{setProjectCost(!ProjectCost)}}/>
                             <span>Client:</span><input type="text" placeholder="Clients Name" onChange={(e)=>{setProjectClient(e.target.value)}}/>
-                            <span>PM:</span><input type="text" placeholder="Project Manager" onChange={(e)=>{setProjectManager(e)}}/>
-                            <span>Start Date: <input type="date" onChange={(e)=>{setProjectDate(e.target.value)}}/></span>
+                            <span>PM:</span><input type="text" placeholder="Project Manager" onChange={(e)=>{setProjectManager(e.target.value)}}/>
+                            {/* <span>Start Date: <input type="date" onChange={(e)=>{setProjectDate(e.target.value)}}/></span> */}
                             <button className="button" onClick={checkUpdates}>Update Info</button>
                         </div>
-                        {TemporaryArray.map((value,index)=>{return <ProjectArea key={"user"+index} project={value} update={UpdateUsersToBeDeleted}/>})}
+                        {TemporaryArray.map(value=>{return <ProjectArea key={value.projectName} project={value} update={UpdateProjectsToBeDeleted}/>})}
                     </div>
                 )
             } //if the search isnt empty it is showing the search result
@@ -180,15 +168,15 @@ export default function AdminPage(props) {
                 return(
                     <div>
                         <div className="justify border-simple">
-                            <GoTriangleRight className="color"/>
+                            <GoTriangleRight className="color-zan"/>
                             <input type="text" placeholder="Project Name" onChange={(e)=>{setProjectsName(e.target.value)}}/>
-                            <FaDollarSign className={ProjectCost? "color cursor" : "cursor"} onClick={()=>{setProjectCost(!ProjectCost)}}/>
+                            <FaDollarSign className={ProjectCost? "color-zan cursor" : "cursor color"} onClick={()=>{setProjectCost(!ProjectCost)}}/>
                             <span>Client:</span><input type="text" placeholder="Clients Name" onChange={(e)=>{setProjectClient(e.target.value)}}/>
-                            <span>PM:</span><input type="text" placeholder="Project Manager" onChange={(e)=>{setProjectManager(e)}}/>
-                            <span>Start Date: <input type="date" onChange={(e)=>{setProjectDate(e.target.value)}}/></span>
+                            <span>PM:</span><input type="text" placeholder="Project Manager" onChange={(e)=>{setProjectManager(e.target.value)}}/>
+                            {/* <span>Start Date: <input type="date" onChange={(e)=>{setProjectDate(e.target.value)}}/></span> */}
                             <button className="button" onClick={checkUpdates}>Update Info</button>
                         </div>
-                        {projects.map((value,index)=>{return <ProjectArea key={"project"+index} project={value} update={UpdateProjectsToBeDeleted}/>})}
+                        {projects.map(value=>{return <ProjectArea key={value.projectName} project={value} update={UpdateProjectsToBeDeleted}/>})}
                     </div>
                 )                
             }
@@ -204,7 +192,7 @@ export default function AdminPage(props) {
             </div>
             <div className="justify-evenly margin"> 
                 <input type="text" className="search-bar" onKeyUp={(e)=>{searchInput(e)}} placeholder="Search.."/>
-                <button className="button background-color" onClick={sendDeleteInfo} disabled={isDisabled()}>Delete</button>
+                <button className="button background-color" onClick={sendDeleteInfo}>Delete</button>
             </div>
             <div className="">
                 {Display()}

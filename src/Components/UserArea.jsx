@@ -1,17 +1,22 @@
 import React,{useState} from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { GoTriangleDown } from 'react-icons/go';
 import { GoTriangleUp } from 'react-icons/go';
+import { updateUserName, updateUserPassword, updateUserEmail, updateUserPhone,  } from '../Actions';
 
 export default function UserArea(props) {
     const [UsersName, setUsersName] = useState()
+    const [UsersPhone, setUsersPhone] = useState()
+    const [isPhoneValid, setIsPhoneValid] = useState(false)
     const [UsersEmail, setUsersEmail] = useState()
     const [isEmailValid, setIsEmailValid] = useState(false)
     const [UsersPassword, setUsersPassword] = useState()
     const [isPasswordValid, setIsPasswordValid] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
 
+    const dispatch = useDispatch();
     const UsersInfo = useSelector(state=>state.Users)
+    const UserIndex = UsersInfo.findIndex(user => user.id === props.user.id)
 
     //----------------------------------------------------------
     //checkValidEmail & checkValidPassword both check for a specific pattern
@@ -39,7 +44,7 @@ export default function UserArea(props) {
                 if(UserEmailIndex!==-1){
                     alert('Sorry it seems this Email is already registered\nPlease pick another one')
                 }
-            } //alerts for existing Email in the DB
+            }
         }
     }
 
@@ -52,6 +57,18 @@ export default function UserArea(props) {
             setIsPasswordValid(false)
         }
     }
+
+    const checkValidPhone =(e)=>{
+        setUsersPhone(e.target.value)
+        if ((/^\d{7,}$/).test(e.target.value.replace(/[\s()+\-\.]|ext/gi, ''))) {
+            //strips all valid special characters which an international phone number can contain
+            // (spaces, parens, +, -, ., ext) and then counts if there are at least 7 digits
+            setIsPhoneValid(true)
+        }
+        else{
+            setIsPhoneValid(false)
+        }
+    }
     //----------------------------------------------------------
     // manipulates the hidden area
     const toggle=()=>{
@@ -60,15 +77,19 @@ export default function UserArea(props) {
     //----------------------------------------------------------
     const checkUpdates=()=>{
         if(UsersName!==undefined){
-            // update users name
+            dispatch(updateUserName(UserIndex, UsersName))
         }
         if(isEmailValid===true){
-            // update users Email            
+            dispatch(updateUserEmail(UserIndex, UsersEmail))
         }
-        if(UsersPassword!==undefined){
-            // update users Password
+        if(isPasswordValid===true){
+            dispatch(updateUserPassword(UserIndex, UsersPassword))
+        }
+        if(isPhoneValid===true){
+            dispatch(updateUserPhone(UserIndex, UsersPhone))
         }
     }
+    //----------------------------------------------------------
     const sendInfo=()=>{
         props.update(props.user.id)
     }
@@ -76,15 +97,16 @@ export default function UserArea(props) {
         <div className="">
             <input type="checkbox" onChange={sendInfo}/>
             {isOpen? <div className="inline border-simple">
-                <GoTriangleUp className="color cursor" onClick={toggle}/>
+                <GoTriangleUp className="color-zan cursor" onClick={toggle}/>
                 <input type="text" placeholder={props.user.name} onChange={(e)=>{setUsersName(e.target.value)}}/>
                 <input type="text" placeholder={props.user.email} onChange={(e)=>{checkValidEmail(e)}}/>
                 <span>Password:</span><input type="text" placeholder={props.user.password} onChange={(e)=>{checkValidPassword(e)}}/>
+                <span>Phone number:</span><input type="text" placeholder={props.user.phone} onChange={(e)=>{checkValidPhone(e)}}/>
                 <span>Worker ID:{props.user.id}</span>
                 <span>Worker status:{props.user.status}</span>
                 <button className="button background-color" onClick={checkUpdates}>Update Info</button>
             </div> : <div className="inline border-simple">
-                <GoTriangleDown className="color cursor" onClick={toggle}/>
+                <GoTriangleDown className="color-zan cursor" onClick={toggle}/>
                 <span className="">{props.user.name}</span>
                 <span className="">{props.user.email}</span>
             </div>}

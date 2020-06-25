@@ -1,8 +1,9 @@
 import React,{useState} from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { GoTriangleDown } from 'react-icons/go';
 import { GoTriangleUp } from 'react-icons/go';
 import { FaDollarSign } from 'react-icons/fa';
+import { addNewProject, adminNewProject, updateProjectName, adminUpdateProject, updatePM, updateClient, adminUpdateClient, updateCost } from '../Actions';
 
 export default function UserArea(props) {
     const [ProjectName, setProjectsName] = useState()
@@ -11,6 +12,7 @@ export default function UserArea(props) {
     const [isOpen, setIsOpen] = useState(false)
     const [DollarClass, setDollarClass] = useState(props.project.projectCost)
 
+    const dispatch = useDispatch();
     const projects = useSelector(state=>state.Projects)
 
     //----------------------------------------------------------
@@ -23,15 +25,20 @@ export default function UserArea(props) {
         setIsOpen(!isOpen)        
     }
     //----------------------------------------------------------
+    const totalWorkersCalc=()=>{
+        // let projectReportArray = reports.filter(value=> value.reportProjectName===props.project.projectName)
+        // let workersAmount = projectReportArray.filter((value, index)=> projectReportArray.indexOf(value.reportUserName) === index);
+        // return workersAmount.length
+    }
+    //CHECK!!
+    //----------------------------------------------------------
     const checkUpdates=()=>{
         if(projects.length===0){
             if(ProjectName!==undefined){
                 if(ProjectClient!==undefined){
                     if(ProjectManager!==undefined){
-                        // dispatch projectManager
-                        // dispatch DollarClass
-                        // dispatch projectClient
-                        // dispatch projectName
+                        dispatch(addNewProject(ProjectName, ProjectClient, ProjectManager, new Date(), DollarClass))
+                        dispatch(adminNewProject(ProjectName, ProjectClient))
                     }
                     else{
                         alert("Sorry, Project must contain Project Manager")
@@ -46,18 +53,21 @@ export default function UserArea(props) {
             }
         }
         else{
-            let projectIndex = projects.findIndex(value=> value.projectName === ProjectName)
-            if(projectIndex===-1){
-                if(ProjectName!==undefined){
-                    // dispatch projectName
+            let existingProjectIndex = projects.findIndex(value=> value.projectName === props.project.projectName)
+            let checkProjectNameIndex = projects.findIndex(value=> value.projectName === ProjectName)
+            if(existingProjectIndex!==-1&&checkProjectNameIndex===-1){
+                if(ProjectName!==undefined){    
+                    dispatch(updateProjectName(existingProjectIndex, ProjectName))
+                    dispatch(adminUpdateProject(existingProjectIndex, ProjectName))
                 }
                 if(ProjectManager!==undefined){
-                    // dispatch projectManager
+                    dispatch(updatePM(existingProjectIndex, ProjectManager))
                 }
                 if(ProjectClient!==undefined){
-                    // dispatch projectClient                        
+                    dispatch(updateClient(existingProjectIndex, ProjectClient))
+                    dispatch(adminUpdateClient(existingProjectIndex, ProjectClient))
                 }
-                // dispatch projectCost
+                dispatch(updateCost(existingProjectIndex, DollarClass))
             }else{
                 alert("Sorry, this project name is alread in use")
             }
@@ -71,19 +81,19 @@ export default function UserArea(props) {
         <div className="">
             <input type="checkbox" onChange={sendInfo}/>
             {isOpen? <div className="inline border-simple">
-                <GoTriangleUp className="color cursor" onClick={toggle}/>
+                <GoTriangleUp className="color-zan cursor" onClick={toggle}/>
                 <input type="text" placeholder={props.project.projectName} onChange={(e)=>{setProjectsName(e.target.value)}}/>
-                <FaDollarSign className={DollarClass? "cursor color" : "cursor"} onClick={changeClass}/>{/* checkbox designd as dollar sign, onchange setState for changeCost */}
+                <FaDollarSign className={DollarClass? "cursor color-zan" : "cursor color"} onClick={changeClass}/>{/* checkbox designd as dollar sign, onchange setState for changeCost */}
                 <span>Client:</span><input type="text" placeholder={props.project.projectClient} onChange={(e)=>{setProjectClient(e.target.value)}}/>
-                <span>PM:</span><input type="text" placeholder={props.project.projectManager} onChange={(e)=>{setProjectManager(e)}}/>
-                <span>Total Workers: {/* pull information from DB about how many workers worked on this proj */}</span>
+                <span>PM:</span><input type="text" placeholder={props.project.projectManager} onChange={(e)=>{setProjectManager(e.target.value)}}/>
+                <span>Total Workers: {totalWorkersCalc}{/* pull information from DB about how many workers worked on this proj */}</span>
                 <span>Status: {props.project.projectStatus}h</span>
-                <span>Start Date: {props.project.ProjectDate}</span>
+                <span>Start Date: {props.project.ProjectDate.toDateString()}</span>
                 <button className="button background-color" onClick={checkUpdates}>Update Info</button>
             </div> : <div className="inline border-simple">
-                <GoTriangleDown className="color cursor" onClick={toggle}/>
+                <GoTriangleDown className="color-zan cursor" onClick={toggle}/>
                 <span className="">{props.project.projectName}</span>
-                <FaDollarSign className={props.project.projectCost? "color" : ""}/>
+                <FaDollarSign className={props.project.projectCost? "color-zan" : "color"}/>
                 <span className="">Client: {props.project.projectClient}</span>
                 <span className="">PM: {props.project.projectManager}</span>
             </div>}

@@ -97,8 +97,12 @@ a:active, a:visited, a{
   font-weight: 700;
 }
 
-.color{
+.color-zan{
   color: #00c9cd
+}
+
+.color{
+  color: #f39033
 }
 
 .background-color{
