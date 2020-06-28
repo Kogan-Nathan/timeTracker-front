@@ -10,11 +10,11 @@ export default function Login(){
     const [password, setPassword] = useState()
     const [isPasswordValid, setIsPasswordValid] = useState(false)
     const [wrongPasswordSpan, setWrongPasswordSpan] = useState(false)
-    const [Logged, setLogged] = useState(false)
+    // const [Logged, setLogged] = useState(false)
 
     const AdminInfo = useSelector(state=>state.Admin)
     const UsersInfo = useSelector(state=>state.Users)
-    const IsLoggedInfo = useSelector(state=>state.isLogged)
+    // const IsLoggedInfo = useSelector(state=>state.isLogged)
     const dispatch = useDispatch();
 
     //----------------------------------------------------------
@@ -45,9 +45,8 @@ export default function Login(){
         // if false, displays span#"wrong-email" & span#"wrong-password"
         // if true, sets isLogged to true and displays a different page
         if(AdminInfo.email===email&&AdminInfo.password===password){
-            setLogged(true)
+            // setLogged(true)
             dispatch(adminIsLogged())
-            // window.location = "/admin";
         }
         else {
             if(UsersInfo.length===0){
@@ -60,7 +59,7 @@ export default function Login(){
                 }
                 else{
                     if(UsersInfo[UserIndex].email===email&&UsersInfo[UserIndex].password===password){
-                        setLogged(true)
+                        // setLogged(true)
                         dispatch(isLogged(UserIndex))
                     }
                     else{
@@ -76,7 +75,7 @@ export default function Login(){
             <div className="">
                 <h4>Log In</h4>
                 <div>
-                    <input className="input" type="text" placeholder="Enter email" onChange={(e)=>{checkValidEmail(e)}}/><br/>
+                    <input className="input" type="text" name="email" placeholder="Enter email" onChange={(e)=>{checkValidEmail(e)}}/><br/>
                     <span className={wrongEmailSpan? "" : "hidden-flag"} id="wrong-email">email is not correct</span><br/>
                     <span className={isEmailValid? "" : "hidden-flag"}>email is not valid</span><br/>
                 </div>

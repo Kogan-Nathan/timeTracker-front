@@ -7,6 +7,7 @@ const loggedReducer = (state = {isLogged:false, user:"", userIndex:null}, action
             state = {isLogged: true, user: "admin", userIndex: null}
             return state;
         case 'SIGN_OUT':
+            state = {isLogged: false, user: "", userIndex: null}
             return state; 
         default:
             return state;

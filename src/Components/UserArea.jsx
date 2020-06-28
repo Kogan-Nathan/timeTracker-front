@@ -5,12 +5,12 @@ import { GoTriangleUp } from 'react-icons/go';
 import { updateUserName, updateUserPassword, updateUserEmail, updateUserPhone,  } from '../Actions';
 
 export default function UserArea(props) {
-    const [UsersName, setUsersName] = useState()
-    const [UsersPhone, setUsersPhone] = useState()
+    const [UsersName, setUsersName] = useState("")
+    const [UsersPhone, setUsersPhone] = useState("")
     const [isPhoneValid, setIsPhoneValid] = useState(false)
-    const [UsersEmail, setUsersEmail] = useState()
+    const [UsersEmail, setUsersEmail] = useState("")
     const [isEmailValid, setIsEmailValid] = useState(false)
-    const [UsersPassword, setUsersPassword] = useState()
+    const [UsersPassword, setUsersPassword] = useState("")
     const [isPasswordValid, setIsPasswordValid] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
 
@@ -76,7 +76,7 @@ export default function UserArea(props) {
     }
     //----------------------------------------------------------
     const checkUpdates=()=>{
-        if(UsersName!==undefined){
+        if(UsersName!==""){
             dispatch(updateUserName(UserIndex, UsersName))
         }
         if(isEmailValid===true){

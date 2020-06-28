@@ -6,9 +6,9 @@ import { FaDollarSign } from 'react-icons/fa';
 import { addNewProject, adminNewProject, updateProjectName, adminUpdateProject, updatePM, updateClient, adminUpdateClient, updateCost } from '../Actions';
 
 export default function UserArea(props) {
-    const [ProjectName, setProjectsName] = useState()
-    const [ProjectClient, setProjectClient] = useState()
-    const [ProjectManager, setProjectManager] = useState()
+    const [ProjectName, setProjectsName] = useState("")
+    const [ProjectClient, setProjectClient] = useState("")
+    const [ProjectManager, setProjectManager] = useState("")
     const [isOpen, setIsOpen] = useState(false)
     const [DollarClass, setDollarClass] = useState(props.project.projectCost)
 
@@ -34,9 +34,9 @@ export default function UserArea(props) {
     //----------------------------------------------------------
     const checkUpdates=()=>{
         if(projects.length===0){
-            if(ProjectName!==undefined){
-                if(ProjectClient!==undefined){
-                    if(ProjectManager!==undefined){
+            if(ProjectName!==""){
+                if(ProjectClient!==""){
+                    if(ProjectManager!==""){
                         dispatch(addNewProject(ProjectName, ProjectClient, ProjectManager, new Date(), DollarClass))
                         dispatch(adminNewProject(ProjectName, ProjectClient))
                     }
@@ -56,14 +56,14 @@ export default function UserArea(props) {
             let existingProjectIndex = projects.findIndex(value=> value.projectName === props.project.projectName)
             let checkProjectNameIndex = projects.findIndex(value=> value.projectName === ProjectName)
             if(existingProjectIndex!==-1&&checkProjectNameIndex===-1){
-                if(ProjectName!==undefined){    
+                if(ProjectName!==""){    
                     dispatch(updateProjectName(existingProjectIndex, ProjectName))
                     dispatch(adminUpdateProject(existingProjectIndex, ProjectName))
                 }
-                if(ProjectManager!==undefined){
+                if(ProjectManager!==""){
                     dispatch(updatePM(existingProjectIndex, ProjectManager))
                 }
-                if(ProjectClient!==undefined){
+                if(ProjectClient!==""){
                     dispatch(updateClient(existingProjectIndex, ProjectClient))
                     dispatch(adminUpdateClient(existingProjectIndex, ProjectClient))
                 }
