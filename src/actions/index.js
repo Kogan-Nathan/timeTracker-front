@@ -1,22 +1,3 @@
-
-export const projectName = () =>{
-    return {
-        type: 'PROJECTNAME'
-    };
-};
-
-export const projectClient = () =>{
-    return {
-        type: 'PROJECTCLIENT'
-    };
-};
-
-export const projectStatus = () =>{
-    return {
-        type: 'PROJECTSTATUS'
-    };
-};
-
 export const addProject = (projectName,projectClient,projectManager,projectPrivacy,projectDate,projectCost) =>{
     return {
         type : "ADD_PROJECT",
@@ -82,3 +63,29 @@ export const projectCost = (projectDataIndex, input) =>{
         inputData: input
     }
 }
+
+export const isLogged = () =>{
+    return {
+        type: "SIGN_UP"
+    }
+}
+
+export const addWorkHours = (projectName,projectFrom,projectTo,projectDate,reportStatus) =>{
+    return {
+        type: "ADD_WORK_HOURS",
+        reportProjectNameData: projectName,
+        reportProjectFromData: projectFrom,
+        reportProjectToData: projectTo,
+        reportProjectDateData: projectDate,
+        reportStatusData: reportStatus
+    }
+}
+
+// export const viewUsersData = (userName, userEmail, userProjects) => {
+//     return {
+//         type: "VIEW_USERS_DATA",
+//         userNameData : userName,
+//         userEmailData : userEmail,
+//         userProjectsData : userProjects
+//     }
+// }

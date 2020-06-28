@@ -1,40 +1,27 @@
 import React from 'react'
 import Nav from './Nav'
+import {useSelector} from 'react-redux'
+import UsersRow from './UsersRaw'
 
 export default function Users() {
+
+    const usersData = useSelector(state => state.usersData);
+
     return (
-        <div>
+        <div className="main">
             <Nav/>
-            <table className="tableProjects">
-                <tr style={{display: "inline"}}>
+            <div className="tableConatainer">
+            <table className="tableProjectsHeading">
+                <tr className="trHeading">
                     <th> name </th>
                     <th> email  </th>
                     <th> projects  </th>
-                    {/* <th> {name} </th>
-                    <th> {email} </th>
-                    <th> {projects} </th> */}
                 </tr> 
             </table>
-
-            {/*  loop  */}
-            <table className="tableProjects">
-                <tr>
-                    <input type="text" placeholder="name"></input>
-                    <input type="email" placeholder="email"></input>
-                    <input type="text" placeholder="projects"></input>
-                </tr> 
-            </table>
-
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a class="active" href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
             </div>
+
+            {usersData.map((value,index)=>{return <UsersRow key={"user"+index} user={value}/>})}
+
         </div>
     )
 }

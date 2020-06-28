@@ -1,9 +1,9 @@
-const projectInfo = (state = [{}], action) =>{
+const projectInfo = (state = [{projectName: 'theAcademi', projectClient: 'Misrad ahinuh',projectManager: 'Yoni S', projectPrivacy: true, projectDate: '10-11-2020', projectCost: true, projectStatus: 200},
+                              {projectName: 'bila-store', projectClient: 'Bilag-Bong',projectManager: 'Yoni S', projectPrivacy: true, projectDate: '22-02-2020', projectCost: true, projectStatus: 127},  
+                              {projectName: 'haSifriya', projectClient: 'kiryan uno library',projectManager: 'Yoni S', projectPrivacy: true, projectDate: '17-05-2019', projectCost: false, projectStatus: 639}
+], action) =>{
     switch (action.type){
-        case "FETCH_PROJECT":
-                if(action.type = "FETCH_PROJECT"){
-                    state = {...state, projectinfo: action.payload}
-                }
+
         case "ADD_PROJECT":
             return state=[{projectName: action.projectNameData, projectClient: action.projectClientData, projectStatus: 0, projectManager: action.projectManagerData, projectPrivacy: action.ProjectPrivacyData, ProjectDate: action.projectDateDate, projectCost: action.projectCostData}
                 ,...state];

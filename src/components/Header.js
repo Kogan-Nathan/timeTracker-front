@@ -12,8 +12,8 @@ export default function Header() {
             <div className="header">
                   <Link to="/" className="logo" > TimeTracker </Link> 
                   <div className="buttons-area"> 
-                    <button className="login-butt"> Login </button>
-                    <button className="signup-butt"> <Link style={{textDecoration:'none'}}to="/signup"> Sign up </Link> </button>
+                    <button className="login-butt" onClick={()=>window.location="/login"}>  Login </button>
+                    <button className="signup-butt" onClick={()=>window.location="/signup"}> Sign Up </button>
                     </div>
  
             </div>

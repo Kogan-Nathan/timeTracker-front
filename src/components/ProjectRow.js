@@ -5,11 +5,11 @@ export default function ProjectRow(props) {
     return (
         <div>
         <table className="tableProjects">
-                <tr>
-                    <td placeholder="Project Name"> {props.project.projectName} </td>
-                    <td placeholder="Client">{props.project.projectClient}</td>
-                    <td placeholder="Status">{props.project.projectStatus}</td>
-                </tr> 
+
+                    <td> {props.project.projectName} </td>
+                    <td>{props.project.projectClient}</td>
+                    <td>{props.project.projectStatus}</td>
+
             </table>
         </div>
     )
