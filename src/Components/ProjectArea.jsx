@@ -14,6 +14,7 @@ export default function UserArea(props) {
 
     const dispatch = useDispatch();
     const projects = useSelector(state=>state.Projects)
+    const reports = useSelector(state=>state.reportData)
 
     //----------------------------------------------------------
     const changeClass=()=>{
@@ -26,11 +27,22 @@ export default function UserArea(props) {
     }
     //----------------------------------------------------------
     const totalWorkersCalc=()=>{
-        // let projectReportArray = reports.filter(value=> value.reportProjectName===props.project.projectName)
-        // let workersAmount = projectReportArray.filter((value, index)=> projectReportArray.indexOf(value.reportUserName) === index);
-        // return workersAmount.length
+        let projectReportArray = reports.filter(value=> value.reportProjectName===props.project.projectName)
+        let workersAmount = [];
+        let uniqueObject ={};
+        // Loop for the array elements
+        for(let i in projectReportArray){
+            // Extract the title
+            let workersName = projectReportArray[i]['reportUserName'];
+            // Use the title as the index
+            uniqueObject[workersName] = projectReportArray[i];
+        }
+        // Loop to push unique object into array
+        for(let i in uniqueObject){
+            workersAmount.push(uniqueObject[i]);
+        }
+        return workersAmount.length
     }
-    //CHECK!!
     //----------------------------------------------------------
     const checkUpdates=()=>{
         if(projects.length===0){
@@ -78,18 +90,18 @@ export default function UserArea(props) {
         props.update(props.project.projectName)
     }
     return (
-        <div className="">
-            <input type="checkbox" onChange={sendInfo}/>
+        <div className="area">
+            <input className="checkbox" type="checkbox" onChange={sendInfo}/>
             {isOpen? <div className="inline border-simple">
                 <GoTriangleUp className="color-zan cursor" onClick={toggle}/>
                 <input type="text" placeholder={props.project.projectName} onChange={(e)=>{setProjectsName(e.target.value)}}/>
                 <FaDollarSign className={DollarClass? "cursor color-zan" : "cursor color"} onClick={changeClass}/>{/* checkbox designd as dollar sign, onchange setState for changeCost */}
                 <span>Client:</span><input type="text" placeholder={props.project.projectClient} onChange={(e)=>{setProjectClient(e.target.value)}}/>
                 <span>PM:</span><input type="text" placeholder={props.project.projectManager} onChange={(e)=>{setProjectManager(e.target.value)}}/>
-                <span>Total Workers: {totalWorkersCalc}{/* pull information from DB about how many workers worked on this proj */}</span>
+                <span>Total Workers: {totalWorkersCalc()}{/* pull information from DB about how many workers worked on this proj */}</span>
                 <span>Status: {props.project.projectStatus}h</span>
                 <span>Start Date: {props.project.ProjectDate.toDateString()}</span>
-                <button className="button background-color" onClick={checkUpdates}>Update Info</button>
+                <button className="button general-butt" onClick={checkUpdates}>Update Info</button>
             </div> : <div className="inline border-simple">
                 <GoTriangleDown className="color-zan cursor" onClick={toggle}/>
                 <span className="">{props.project.projectName}</span>

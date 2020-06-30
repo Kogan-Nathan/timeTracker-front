@@ -10,7 +10,6 @@ export default function Login(){
     const [password, setPassword] = useState()
     const [isPasswordValid, setIsPasswordValid] = useState(false)
     const [wrongPasswordSpan, setWrongPasswordSpan] = useState(false)
-    // const [Logged, setLogged] = useState(false)
 
     const AdminInfo = useSelector(state=>state.Admin)
     const UsersInfo = useSelector(state=>state.Users)
@@ -32,7 +31,7 @@ export default function Login(){
 
     const checkValidPassword=(e)=>{
         setPassword(e.target.value)
-        if (!(/[a-zA-Z0-9]{16,}$/.test(e.target.value))) {
+        if (!(/[a-zA-Z0-9]{8,}$/.test(e.target.value))) {
             setIsPasswordValid(true)
         }
         else{
@@ -44,9 +43,13 @@ export default function Login(){
         // checks if email and password are found.
         // if false, displays span#"wrong-email" & span#"wrong-password"
         // if true, sets isLogged to true and displays a different page
-        if(AdminInfo.email===email&&AdminInfo.password===password){
-            // setLogged(true)
-            dispatch(adminIsLogged())
+        if(email==="timeAdmin@zangula.com"){
+            if(AdminInfo.email===email&&AdminInfo.password===password){
+                dispatch(adminIsLogged())
+            }
+            else{
+                setWrongPasswordSpan(true)
+            }
         }
         else {
             if(UsersInfo.length===0){
@@ -59,7 +62,7 @@ export default function Login(){
                 }
                 else{
                     if(UsersInfo[UserIndex].email===email&&UsersInfo[UserIndex].password===password){
-                        // setLogged(true)
+                        setWrongPasswordSpan(false)
                         dispatch(isLogged(UserIndex))
                     }
                     else{
@@ -71,22 +74,22 @@ export default function Login(){
     }
     //----------------------------------------------------------
     return(
-        <div className="login-page">
+        <div className="login-page main">
             <div className="">
-                <h4>Log In</h4>
+                <h1>Log In</h1>
                 <div>
-                    <input className="input" type="text" name="email" placeholder="Enter email" onChange={(e)=>{checkValidEmail(e)}}/><br/>
+                    <input className="inputArea" type="text" name="email" placeholder="Enter email" onChange={(e)=>{checkValidEmail(e)}}/><br/>
                     <span className={wrongEmailSpan? "" : "hidden-flag"} id="wrong-email">email is not correct</span><br/>
                     <span className={isEmailValid? "" : "hidden-flag"}>email is not valid</span><br/>
                 </div>
                 <div>
-                    <input className="input" type="password" placeholder="Enter password" onChange={(e)=>{checkValidPassword(e)}}/><br/>
+                    <input className="inputArea" type="password" placeholder="Enter password" onChange={(e)=>{checkValidPassword(e)}}/><br/>
                     <span className={wrongPasswordSpan? "" :"hidden-flag"} id="wrong-password">password is not correct</span><br/>
                     <span className={isPasswordValid? "" : "hidden-flag"}>password is not valid</span><br/>
                 </div>
                 <div>
-                    <button className="button" onClick={validLogIn}>Login</button><br/>
-                    <span className="signup-redirection">new here? <Link to="/signup">sign up</Link></span>
+                    <button className="submit" onClick={validLogIn}>Submit</button><br/>
+                    <div className="signup-new">new here? <Link to="/signup" className="signup-redirection">sign up</Link></div>
                 </div>
             </div>
         </div>

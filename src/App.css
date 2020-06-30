@@ -1,26 +1,56 @@
-
+@import url("//fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800");
 .App {
   text-align: center;
-  /* font-family: 'Montserrat', sans-serif; */
 }
 
-.logo{
-  font-size: 28px;
-  font-weight: 600;
-  display: flex;
-  float: left;
-  margin-left: 20px;
+body, h1,h2,h3,h4,h5,h6,button,a,td,th,tr,input,Link{
+  /* vertical-align: baseline; */
+  font-family: "montserrat";
+  letter-spacing: 0.6px;
+}
+
+h1{
+  font-weight: 400;
+  color: #00C9CD;
+}
+
+.main{
+  margin-top: 80px;
+  height: 100vh;
+}
+
+a:visited, a:active, a{
+  text-decoration: none;
+  color: black;
 }
 
 .cursor{
   cursor: pointer;
 }
 
+.logo{
+  font-size: 28px;
+  font-weight: 700;
+  display: flex;
+  float: left;
+  margin-left: 20px;
+  color: #00C9CD;
+  text-decoration: none;
+  letter-spacing: 0.9px;
+}
+
+.logo:visited, .logo:active, .logo:hover, .signup-redirection:visited, .signup-redirection:active, .signup-redirection{
+  text-decoration: none;
+  color: #00C9CD;
+}
+
 .header{
   background-color: #5c5c5c;
   padding: 50px;
   display: flex;
+  /* flex-direction: column; */
   justify-content: space-between;
+  align-items: center;
 }
 
 .footer{
@@ -28,49 +58,165 @@
   padding: 20px;
 }
 
+.list{
+  list-style-type: none;
+  margin: 0;
+  padding-bottom: 4px;
+}
+
+ul{
+  padding: 0;
+}
+
+li{
+  padding: 20px;
+  /* margin-bottom: 50px; */
+  display: inline-block;
+  color: #fff
+}
+
 .buttons-area{
   display: flex;
   float: right;
 }
-.login-butt, .signup-butt{
+
+.login-butt{
+  border: solid 2px #00C9CD;
+  background-color: transparent;
+  padding: 15px 28px
+}
+
+.signup-butt{
+  border: 2px #00C9CD solid;
+  padding: 15px 20px
+}
+
+.login-butt:visited, .login-butt:active .login-butt{
+  color: #00C9CD;
+}
+
+.signup-butt:visited, .signup-butt:active .signup-butt{
+  color: #5c5c5c;
+}
+
+.login-butt:hover{
+  color: #5C5C5C;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.signup-butt:hover, .signup-butt a:hover{
+  color: #fff;
+  background-color: transparent;
+  border-color: #fff;
+}
+
+.signup-redirection{
+  font-weight: 500;
+}
+
+.signup-new{
+  margin-top: 10px;
+}
+
+.login-butt, .signup-butt, .general-butt, .logout-butt{
   margin: 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.logout-butt{
+  color: #00C9CD;
+  background-color: transparent;
+  border: 2px #00C9CD solid;
+  padding: 15px 24px;  
+}
+
+.add-butt{
+  color: #00C9CD;
+  background-color: transparent;
+  border: 2px #00C9CD solid;
+  padding: 15px;
+}
+
+.general-butt{
+  color: #5C5C5C;
+  background-color: #00C9CD;
+  border: 2px #00C9CD solid;
+  padding: 15px 20px;
 }
 
 .hidden-flag{
   visibility: hidden;
 }
 
-ul{
-  list-style: none;
-  padding: 0;
-}
-
 button{
   cursor: pointer;
-  border: none;
 }
 
-input:focus, button:focus{
+input:focus, .inputArea:focus, button:focus{
   outline: none;
 }
 
-.input, .search-bar{
-  border: 1px solid #5c5c5c;
+.submit{
+  padding: 15px 25px;
+  border-radius: 50px;
+  border: solid 1px transparent;
+  width: 250px;
+  color: #000;
+  background-color:#00C9CD;
+  font-weight: 600;
+  font-size: 16px;
 }
 
-.input, button, .search-bar{
-  border-radius: 23px;
+.submit:hover{
+  color: #00C9CD;
+  background-color: transparent;
+  border: solid 2px #00C9CD;
+}
+
+.submit:focus{
+  border: none;
+}
+
+.inputArea{
+  border: 0;
+  border-bottom: 1px solid #000;
+  font-family: "montserrat";
+  padding: 0px;
+  margin: 15px;
+  width: 250px;
+  font-size: 16px;
+}
+
+.search-bar{
+  border: 1px solid #5c5c5c;
+  border-radius: 50px;
   padding: 10px;
+}
+
+/* .input, .search-bar{
+  border: 1px solid #5c5c5c;
+  border-radius: 50px;
+  padding: 10px;
+} */
+
+.area{
+  width: 90%;
+  margin: auto;
 }
 
 .admin-nav{
   width: 50%;
   margin: auto;
 }
+
 .admin-nav div{
   width: 30%;
   margin: 10px 0px;
 }
+
 .justify-evenly{
   display: flex;
   justify-content: space-evenly;
@@ -80,14 +226,10 @@ input:focus, button:focus{
   display: contents;
 }
 
-a:active, a:visited, a{
-  text-decoration: none;
-  color: black;
-}
-
 .active::after{
   content: '';
   width: 100%;
+  margin-top: 5px;
   height: 3px;
   background-color:#00c9cd;
   display: block;
@@ -112,21 +254,175 @@ a:active, a:visited, a{
 
 .search-bar{
   width: 30%;
+  height: 30px;
 }
+
+.input{
+  width: 160px;
+  margin: 10px;
+  padding: 5px;
+}
+
 .margin{
   margin: 15px;
 }
+
 .border-simple{
   padding: 5px;
   border: 1px solid #5c5c5c;
   margin: 5px 0px;
+  width: 50%;
+}
+
+.grid-small{
+  display: grid;
+}
+
+.grid-big{
+  display: grid;
+}
+
+/* .grid-item1{
+
+} */
+
+.checkbox{
+  position: relative;
+  top: 10px;
+  margin: 5px;
 }
 
 input[type="checkbox"]{
-  width: 25px;
-  height: 25px;
+  width: 32px;
+  height: 32px;
 }
 
 .inline{
   display: inline-block;
+}
+
+.tableConatainer{
+  margin: 0 auto;
+  display: inline-block;
+  width: 1010px;
+}
+
+.tableProjects{
+  margin: auto;
+  width: 60%;
+}
+
+.tableProjectsHeading{
+  margin-bottom: 20px;
+}
+
+.trHeading{
+  font-weight: 700;
+  font-size: 22px;
+  background-color: #242424;
+  color: white;
+}
+
+table{
+  border-collapse: collapse;
+}
+
+td{
+  border: solid 1px #000;
+  width: 200px;
+  min-width: 200px;
+  max-width: 200px;
+  vertical-align: middle;
+}
+
+th{
+  border: solid 1px #242424;
+  width: 335px;
+  vertical-align: middle;
+  font-weight: 400;
+  padding: 10px 0px;
+}
+/* -------------------------- nav bar ------------------------- */
+
+.nav-bar_container{
+  margin-top: 70px;
+  margin-bottom: 40px;
+}
+
+.navbar {
+  width: 100%;
+  display: inline-block;
+  align-items: center;
+  min-height: 10vh;
+  /* padding: 0 10px; */
+  margin: auto;
+  background-color: transparent;
+}
+
+.navbar-nav {
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.nav-links {
+  display: inline-block;
+  align-items: center;
+  list-style: none;
+  font-size: 25px;
+  text-decoration: none;
+  color: #5C5C5C;
+  padding: 20px 80px;
+}
+
+.nav-links:hover{
+  text-decoration: none;
+  color: #00C9CD;
+}
+
+.nav-link:active{
+  background-color: #333333;
+  color: #fff;
+}
+
+.nav-itam :focus{
+  background-color: #333333;
+  color: #fff;
+}
+
+.lable{
+  padding: 10px;
+}
+
+.select-box {
+  position: relative;
+  display: inline-block;
+  font-family: "montserrat";
+  font-size: 25px;
+  color: #5C5C5C;
+  border: none;
+  width: 150px;
+  margin: 0px 50px;
+}
+
+.select-box:hover{
+  color: #00C9CD;
+}
+
+.select-box:focus{
+  outline: none;
+}
+
+.select-box.option {
+  display: block;
+  padding: 15px;
+  background-color: #fff;
+}
+
+.select-items {
+  color: black;
+  font-size: 16px;
+  background-color: #fff;
 }

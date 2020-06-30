@@ -157,7 +157,7 @@ export default function AdminPage(props) {
                             <span>Client:</span><input type="text" placeholder="Clients Name" onChange={(e)=>{setProjectClient(e.target.value)}}/>
                             <span>PM:</span><input type="text" placeholder="Project Manager" onChange={(e)=>{setProjectManager(e.target.value)}}/>
                             {/* <span>Start Date: <input type="date" onChange={(e)=>{setProjectDate(e.target.value)}}/></span> */}
-                            <button className="button" onClick={checkUpdates}>Update Info</button>
+                            <button className="add-butt" onClick={checkUpdates}>Add New Project</button>
                         </div>
                         {TemporaryArray.map(value=>{return <ProjectArea key={value.projectName} project={value} update={UpdateProjectsToBeDeleted}/>})}
                     </div>
@@ -174,7 +174,7 @@ export default function AdminPage(props) {
                             <span>Client:</span><input type="text" placeholder="Clients Name" onChange={(e)=>{setProjectClient(e.target.value)}}/>
                             <span>PM:</span><input type="text" placeholder="Project Manager" onChange={(e)=>{setProjectManager(e.target.value)}}/>
                             {/* <span>Start Date: <input type="date" onChange={(e)=>{setProjectDate(e.target.value)}}/></span> */}
-                            <button className="button" onClick={checkUpdates}>Update Info</button>
+                            <button className="add-butt" onClick={checkUpdates}>Add New Project</button>
                         </div>
                         {projects.map(value=>{return <ProjectArea key={value.projectName} project={value} update={UpdateProjectsToBeDeleted}/>})}
                     </div>
@@ -185,14 +185,14 @@ export default function AdminPage(props) {
     //----------------------------------------------------------
 
     return (
-        <div className="admin-page">
+        <div className="admin-page main">
             <div className="admin-nav justify-evenly">                
                 <div className={props.class? "active" : ""}><p><Link to="/admin/users">Users</Link></p></div>
                 <div className={props.class? "" : "active"}><p><Link to="/admin/projects">Projects</Link></p></div>
             </div>
-            <div className="justify-evenly margin"> 
+            <div className="margin"> 
                 <input type="text" className="search-bar" onKeyUp={(e)=>{searchInput(e)}} placeholder="Search.."/>
-                <button className="button background-color" onClick={sendDeleteInfo}>Delete</button>
+                <button className="general-butt" onClick={sendDeleteInfo}>Delete</button>
             </div>
             <div className="">
                 {Display()}

@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { GoTriangleDown } from 'react-icons/go';
 import { GoTriangleUp } from 'react-icons/go';
+import moment from 'moment'
 import { updateUserName, updateUserPassword, updateUserEmail, updateUserPhone,  } from '../Actions';
 
 export default function UserArea(props) {
@@ -90,12 +91,24 @@ export default function UserArea(props) {
         }
     }
     //----------------------------------------------------------
+    const convertStatusTime=()=>{
+        let userStatus = props.user.status
+        
+        let totalTime = moment.duration(userStatus, 'hours');
+        let hours = Math.floor(totalTime.asHours());
+        let mins  = Math.floor(totalTime.asMinutes()) - hours * 60;
+        hours = ((hours > 9) ? hours : ("0"+hours))
+        mins = ((mins > 9) ? mins : ("0"+mins))
+        let result = hours + ":" + mins;
+        return result
+    }
+    //----------------------------------------------------------
     const sendInfo=()=>{
         props.update(props.user.id)
     }
     return (
-        <div className="">
-            <input type="checkbox" onChange={sendInfo}/>
+        <div className="area">
+            <input className="checkbox" type="checkbox" onChange={sendInfo}/>
             {isOpen? <div className="inline border-simple">
                 <GoTriangleUp className="color-zan cursor" onClick={toggle}/>
                 <input type="text" placeholder={props.user.name} onChange={(e)=>{setUsersName(e.target.value)}}/>
@@ -103,12 +116,12 @@ export default function UserArea(props) {
                 <span>Password:</span><input type="text" placeholder={props.user.password} onChange={(e)=>{checkValidPassword(e)}}/>
                 <span>Phone number:</span><input type="text" placeholder={props.user.phone} onChange={(e)=>{checkValidPhone(e)}}/>
                 <span>Worker ID:{props.user.id}</span>
-                <span>Worker status:{props.user.status}</span>
-                <button className="button background-color" onClick={checkUpdates}>Update Info</button>
+                <span>Worker status:{convertStatusTime()} hrs</span>
+                <button className="button general-butt" onClick={checkUpdates}>Update Info</button>
             </div> : <div className="inline border-simple">
                 <GoTriangleDown className="color-zan cursor" onClick={toggle}/>
-                <span className="">{props.user.name}</span>
-                <span className="">{props.user.email}</span>
+                <label className="">{props.user.name}</label>
+                <label className="">{props.user.email}</label>
             </div>}
         </div>
     )

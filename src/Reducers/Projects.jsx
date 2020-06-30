@@ -1,4 +1,6 @@
-const ProjectsReducer = (state = [], action) =>{
+const ProjectsReducer = (state = [{projectName: "BlueHawk", projectClient: "svddsvsd", projectStatus: 0, projectManager: "Bob", ProjectDate: "", projectCost: true},
+                                    {projectName: "Matah", projectClient: "hjjhm", projectStatus: 0, projectManager: "Boby", ProjectDate: "", projectCost: false},
+                                    {projectName: "Clockify", projectClient: "kikg", projectStatus: 0, projectManager: "abi", ProjectDate: "", projectCost: true}], action) =>{
     switch (action.type){
         case "ADD_PROJECT":
             return state=[{projectName: action.projectNameData, projectClient: action.projectClientData, projectStatus: 0, projectManager: action.projectManagerData, ProjectDate: action.projectDateDate, projectCost: action.projectCostData}

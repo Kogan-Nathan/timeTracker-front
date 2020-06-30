@@ -6,6 +6,8 @@ import { isLoggedOut } from '../Actions';
 
 export default function Header() {
     const IsLoggedInfo = useSelector(state=>state.isLogged)
+    const users = useSelector(state=>state.Users)
+    const admin = useSelector(state=>state.Admin)
     const dispatch = useDispatch();
 
     //----------------------------------------------------------
@@ -13,18 +15,29 @@ export default function Header() {
         dispatch(isLoggedOut())
     }
     //----------------------------------------------------------
+    const getName=()=>{
+        if(IsLoggedInfo.user==="admin"){
+            let name = admin.name
+            return name
+        }
+        else{
+            let name = users[IsLoggedInfo.userIndex].name
+            return name
+        }
+    }
+    //----------------------------------------------------------
 
     return (
             <div className="header">
-                <span className="logo"> TimeTracker </span>
+                <Link to="/" className="logo"> TimeTracker </Link>
                 <div className="buttons-area"> 
                 {IsLoggedInfo.isLogged? <div>
-                        <span>Welcome Back</span>
-                        <button className="login-butt button" onClick={logout}>Log out</button> 
+                <span>Welcome {getName()}</span>
+                        <button className="logout-butt" onClick={logout}>Log out</button> 
                     </div> : 
                     <div>
-                        <button className="login-butt button"><Link to="/login">Login</Link></button>
-                        <button className="signup-butt button background-color"><Link to="/signup">Sign up</Link></button>
+                        <Link to="/login" className="login-butt">Login</Link>
+                        <Link to="/signup" className="signup-butt background-color">Sign up</Link>
                     </div>}
                 </div>
             </div>
