@@ -1,27 +1,26 @@
 import React from 'react'
-import Nav from './Nav'
+import Table from 'react-bootstrap/Table'
 import {useSelector} from 'react-redux'
 import UsersRow from './UsersRaw'
 
 export default function Users() {
 
-    const usersData = useSelector(state => state.usersData);
+    const usersData = useSelector(state => state.Users);
 
     return (
-        <div className="main">
-            <Nav/>
+        <div>
             <div className="tableConatainer">
-            <table className="tableProjectsHeading">
-                <tbody className="trHeading">
-                    <tr> name </tr>
-                    <tr> email  </tr>
-                    <tr> projects  </tr>
-                </tbody> 
-            </table>
+            <Table className="tableProjectsHeading">
+                <thead className="trHeading">
+                    <tr>
+                        <td> name </td>
+                        <td> email  </td>
+                        <td> projects  </td>
+                    </tr>
+                </thead> 
+            </Table>
             </div>
-
             {usersData.map((value,index)=>{return <UsersRow key={"user"+index} user={value}/>})}
-
         </div>
     )
 }

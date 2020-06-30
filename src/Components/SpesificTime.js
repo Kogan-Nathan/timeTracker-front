@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import Nav from './Nav'
+import Table from 'react-bootstrap/Table'
 import moment from 'moment'
 import {useSelector} from 'react-redux'
 import SummaryRow from './SummaryRow'
@@ -17,36 +17,50 @@ export default function SpesificTime() {
 
     const handleToDate=(e)=>{
         setToDate(e.target.value) 
-        // onlySpesificTime()
     }
 
     const handleFromDate=(e)=>{
         setFromDate(e.target.value)
     }
 
-    const onlySpesificTime = () =>{       
-        // filter by user id --- >
-        let tempReports = reportData.filter(value => value.reportUserName===users[UserIndex].name)
-        // the reports for the spesific time choosen --- >
-        let tempfilter = tempReports.filter(report => moment(report.reportDate).isBetween(fromDate, toDate))
-        setReportForSpesific(tempfilter)    
+    const onlySpesificTime = () =>{ 
+        if(toDate&&fromDate){
+            // filter by user id --- >
+            let tempReports = reportData.filter(value => value.reportUserName===users[UserIndex].name)
+            // the reports for the spesific time choosen --- >
+            let tempfilter = tempReports.filter(report => moment(report.reportDate).isBetween(fromDate, toDate))
+            setReportForSpesific(tempfilter)    
 
-        setShow(true)   
+            setShow(true)
+        }   
     }
 
 
     return (
         <div>
-            <Nav/>
             <h5 style={{paddingBottom:"30px"}}> Choose a Spesific Time </h5>
-            <table className="tableProjects">
-                <tr>
-                    <lable className="lable"> From </lable>
-                    <input type="date" placeholder="dd/mm/yyyy" onChange={handleFromDate}></input>
-                    <lable className="lable" style={{marginLeft:"20px"}} > To </lable>
-                    <input type="date" placeholder="dd/mm/yyyy" onChange={handleToDate} ></input>
-                </tr> 
-            </table>
+            <Table className="tableProjects">
+                <thead>
+                    <tr>
+                        <td className="lable"> From </td>
+                        <td><input className="input" type="date" placeholder="dd/mm/yyyy" onChange={handleFromDate}></input></td>
+                        <td className="lable" style={{marginLeft:"20px"}} > To </td>
+                        <td><input className="input" type="date" placeholder="dd/mm/yyyy" onChange={handleToDate} ></input></td>
+                    </tr> 
+                </thead>
+            </Table>
+            <div className="tableConatainer">
+                <Table className="tableProjectsHeading">
+                    <thead className="trHeading">
+                        <tr>
+                            <td> Project Name </td>
+                            <td> Client  </td>
+                            <td> Status  </td>
+                            <td> Date  </td>
+                        </tr>
+                    </thead> 
+                </Table>
+            </div>
             {show &&
             reportForSpesific.map((value,index)=>{return <SummaryRow key={"report"+index} report={value}/>})
             }

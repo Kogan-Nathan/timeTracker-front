@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import Nav from './Nav'
+import Table from 'react-bootstrap/Table'
 import moment from 'moment'
 import {useSelector} from 'react-redux'
 import SummaryRow from './SummaryRow'
@@ -19,25 +19,25 @@ export default function Last7days() {
 
         let tempReports = reportData.filter(value => value.reportUserName===users[UserIndex].name)
         let tempfilter = tempReports.filter(report => moment(report.reportDate).isBetween(startDate, endDate))
-        setReportForWeek(tempfilter)    
-
+        setReportForWeek(tempfilter)
         setShow(true)   
     }
 
 
     return (
         <div className="main">
-            <Nav/>
                 <h5 style={{paddingBottom:"30px"}}> Last 7 days </h5>
                 <div className="tableConatainer">
-                <table className="tableProjectsHeading">
-                    <tr className="trHeading">
-                        <th> Project Name </th>
-                        <th> Client  </th>
-                        <th> Status  </th>
-                        <th> Date  </th>
-                    </tr> 
-                </table>
+                    <Table className="tableProjectsHeading">
+                        <thead>
+                            <tr className="trHeading">
+                                <th> Project Name </th>
+                                <th> Client  </th>
+                                <th> Status  </th>
+                                <th> Date  </th>
+                            </tr> 
+                        </thead>
+                    </Table>
                 </div>
             {show &&
             reportForWeek.map((value,index)=>{return <SummaryRow key={"report"+index} report={value}/>})

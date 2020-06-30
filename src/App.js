@@ -7,13 +7,14 @@ import Header from './Components/Header'
 import Footer from './Components/Footer';
 import Admin from './Components/AdminPage';
 import Homepage from './Components/HomePage';
-import Timetracker from './Components/Timetracker'
-import Summary from './Components/Summary'
-import Project from './Components/Project'
-import Users from './Components/Users'
+// import Timetracker from './Components/Timetracker'
+// import Summary from './Components/Summary'
+// import Project from './Components/Project'
+// import Users from './Components/Users'
 import Last7days from './Components/Last7days'
 import ThisMonth from './Components/ThisMonth'
 import SpesificTime from './Components/SpesificTime'
+import UserPage from './Components/UserPage'
 import { useSelector } from 'react-redux'
 
 
@@ -117,26 +118,29 @@ function App() {
           }}/>
           <AdminRoute exact path="/admin/projects" component={()=>{return <Admin displayPage={"Projects"} class={false}/>
           }}/>
+          {/* {users.map((user,index)=>{
+            return <PrivateRoute exact path={"/userpage/user="+user.id} key={"user"+index} component={()=>{return <UserPage displayPage={"Timetracker"}/>}}/>
+          })} */}
           {users.map((user,index)=>{
-            return <PrivateRoute exact path={"/timetracker/user="+user.id} key={"user"+index} component={()=>{return <Timetracker/>}}/>
+            return <PrivateRoute exact path={"/timetracker/user="+user.id} key={"user"+index} component={()=>{return <UserPage displayPage={"Timetracker"}/>}}/>
+          })}
+                    {/* {users.map((user,index)=>{
+            return <PrivateRoute exact path={"/summary/user="+user.id} key={"user"+index} component={()=>{return <UserPage displayPage={"Summary"}/>}}/>
+          })} */}
+                    {users.map((user,index)=>{
+            return <PrivateRoute exact path={"/project/user="+user.id} key={"user"+index} component={()=>{return <UserPage displayPage={"Project"}/>}}/>
           })}
                     {users.map((user,index)=>{
-            return <PrivateRoute exact path={"/summary/user="+user.id} key={"user"+index} component={()=>{return <Summary/>}}/>
+            return <PrivateRoute exact path={"/users/user="+user.id} key={"user"+index} component={()=>{return <UserPage displayPage={"Users"}/>}}/>
           })}
                     {users.map((user,index)=>{
-            return <PrivateRoute exact path={"/project/user="+user.id} key={"user"+index} component={()=>{return <Project/>}}/>
+            return <PrivateRoute exact path={"/last7days/user="+user.id} key={"user"+index} component={()=>{return <UserPage displayPage={"Last 7 days"}/>}}/>
           })}
                     {users.map((user,index)=>{
-            return <PrivateRoute exact path={"/users/user="+user.id} key={"user"+index} component={()=>{return <Users/>}}/>
+            return <PrivateRoute exact path={"/thismonth/user="+user.id} key={"user"+index} component={()=>{return <UserPage displayPage={"This month"}/>}}/>
           })}
                     {users.map((user,index)=>{
-            return <PrivateRoute exact path={"/last7days/user="+user.id} key={"user"+index} component={()=>{return <Last7days/>}}/>
-          })}
-                    {users.map((user,index)=>{
-            return <PrivateRoute exact path={"/thismonth/user="+user.id} key={"user"+index} component={()=>{return <ThisMonth/>}}/>
-          })}
-                    {users.map((user,index)=>{
-            return <PrivateRoute exact path={"/spesifictime/user="+user.id} key={"user"+index} component={()=>{return <SpesificTime/>}}/>
+            return <PrivateRoute exact path={"/spesifictime/user="+user.id} key={"user"+index} component={()=>{return <UserPage displayPage={"Spesific time"}/>}}/>
           })}
           {/* <Route exact path='/timetracker' component={()=> <Timetracker/>}/>
           <Route exact path='/summary' component={()=> <Summary/>}/>

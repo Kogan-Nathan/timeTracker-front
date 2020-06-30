@@ -10,7 +10,6 @@ export default function Login(){
     const [password, setPassword] = useState()
     const [isPasswordValid, setIsPasswordValid] = useState(false)
     const [wrongPasswordSpan, setWrongPasswordSpan] = useState(false)
-    // const [Logged, setLogged] = useState(false)
 
     const AdminInfo = useSelector(state=>state.Admin)
     const UsersInfo = useSelector(state=>state.Users)
@@ -32,7 +31,7 @@ export default function Login(){
 
     const checkValidPassword=(e)=>{
         setPassword(e.target.value)
-        if (!(/[a-zA-Z0-9]{16,}$/.test(e.target.value))) {
+        if (!(/[a-zA-Z0-9]{8,}$/.test(e.target.value))) {
             setIsPasswordValid(true)
         }
         else{
@@ -45,7 +44,6 @@ export default function Login(){
         // if false, displays span#"wrong-email" & span#"wrong-password"
         // if true, sets isLogged to true and displays a different page
         if(AdminInfo.email===email&&AdminInfo.password===password){
-            // setLogged(true)
             dispatch(adminIsLogged())
         }
         else {
@@ -59,7 +57,6 @@ export default function Login(){
                 }
                 else{
                     if(UsersInfo[UserIndex].email===email&&UsersInfo[UserIndex].password===password){
-                        // setLogged(true)
                         dispatch(isLogged(UserIndex))
                     }
                     else{

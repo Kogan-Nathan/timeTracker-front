@@ -184,13 +184,14 @@ export const updateUserStatus = (userIndex, inputValue) =>{
     };
 };
 
-export const addWorkHours = (projectName,projectFrom,projectTo,projectDate,reportStatus) =>{
+export const addWorkHours = (projectName,projectFrom,projectTo,projectDate,reportDescription,reportStatus) =>{
     return {
         type: "ADD_WORK_HOURS",
         reportProjectNameData: projectName,
         reportProjectFromData: projectFrom,
         reportProjectToData: projectTo,
         reportProjectDateData: projectDate,
+        reportDescriptionData: reportDescription,
         reportStatusData: reportStatus
     }
 }

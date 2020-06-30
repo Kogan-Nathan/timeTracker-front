@@ -1,16 +1,19 @@
 import React from 'react'
+import Table from 'react-bootstrap/Table'
 
 
 export default function UsersRaw (props) {
     return (
         <div>
-        <table className="tableProjects">
-                <tbody>
-                    <td> {props.user.name} </td>
-                    <td>{props.user.email}</td>
-                    <td>{/*props.user.userProjects*/} projects </td>
-                </tbody> 
-            </table>
+            <Table className="tableProjects">
+                <thead>
+                    <tr>
+                        <td> {props.user.name} </td>
+                        <td>{props.user.email}</td>
+                        <td>{props.user.phone}</td>
+                    </tr>
+                </thead> 
+            </Table>
         </div>
     )
 }

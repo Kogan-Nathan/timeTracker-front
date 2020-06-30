@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
-import {useDispatch} from 'react-redux'
-import {isLogged} from '../Actions'
+import { useSelector, useDispatch} from 'react-redux'
+import {isLogged, addNewUser} from '../Actions'
 
 export default function Login(){
     const [name, setName] = useState()
@@ -9,6 +9,8 @@ export default function Login(){
     const [password, setPassword] = useState()
     const [tempPassword, setTempPassword] =useState()
     const dispatch = useDispatch();
+
+    const UsersInfo = useSelector(state=>state.Users)
 
 
     const handleName=(e)=>{
@@ -69,9 +71,9 @@ export default function Login(){
     }
 
     const signed=()=>{
-        // e.preventDefault()
         if (name && email && password && phone){
-            dispatch(isLogged())
+            dispatch(addNewUser(name,password,email,phone))
+            dispatch(isLogged(0))
         }
     }
 
