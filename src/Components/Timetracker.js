@@ -2,7 +2,7 @@ import React from 'react'
 import Table from 'react-bootstrap/Table'
 import ReportRaw from './ReportRaw'
 import { useSelector,useDispatch} from 'react-redux';
-import {addWorkHours} from '../Actions'
+import {addWorkHours, updateUserStatus, updateStatus} from '../Actions'
 import {useState} from 'react'
 import moment from 'moment' 
 
@@ -10,30 +10,56 @@ export default function Timetracker() {
 
     const reportData = useSelector(state => state.reportData);
     const Projects = useSelector(state => state.Projects);
+    const IsLoggedInfo = useSelector(state=>state.isLogged)
+    const users = useSelector(state=>state.Users)
     const dispatch = useDispatch();
 
-    const [projectName, setProjectName] = useState();
-    const [projectFrom, setProjectFrom] = useState();
+    const [projectName, setProjectName] = useState("");
+    const [userName, setUserName] = useState(users[IsLoggedInfo.userIndex].name);
+    const [userID, setUserID] = useState(users[IsLoggedInfo.userIndex].id);
     const [projectTo, setProjectTo] = useState();
+    const [projectFrom, setProjectFrom] = useState();
     const [projectDate, setProjectDate] = useState();
     const [projectStatus, setProjectStatus] = useState()
     const [reportDescription,setReportDescription] = useState();
+    const [reports,setReports] = useState([]);
+    const [show, setShow] = useState(true)
 
+
+    const reportsByUser = () =>{
+        if(show){
+            // filter by user id --- >
+            let tempReports = reportData.filter(value => value.reportUserId===users[IsLoggedInfo.userIndex].id)
+            setReports(tempReports)                          
+            setShow(false)
+        }
+    }
+    //----------------------------------------------------------
     const total=()=>{        
         if (projectTo && projectFrom){
             let hours = moment.utc(moment(projectTo,"HH:mm").diff(moment(projectFrom,"HH:mm"))).format("HH:mm")
             setProjectStatus(hours)
         }
     }
-
-
+    //----------------------------------------------------------
+    const update=()=>{
+        if(projectName&&projectFrom&&projectTo&&projectDate){
+            let projectIndex = Projects.findIndex(value=> value.projectName===projectName)
+            let userStatus = moment.duration(projectStatus).asHours()
+            dispatch(addWorkHours(userName, userID, projectName, projectFrom, projectTo, projectDate, reportDescription, projectStatus))
+            dispatch(updateUserStatus(IsLoggedInfo.userIndex, userStatus))
+            dispatch(updateStatus(projectIndex, userStatus))
+        }
+    }
+    //----------------------------------------------------------
     const convertDate = (e) =>{
         let tempDate = e.target.value
-        tempDate = moment().toString();
+        tempDate = moment(tempDate).toString();
         setProjectDate(tempDate)
         total ()
     }
-
+    //----------------------------------------------------------
+    
     return (
         <div>
             <div className="tableConatainer">
@@ -60,10 +86,11 @@ export default function Timetracker() {
                 </div>
                 <div style={{width:"100%"}}>
                     <input style={{width:"80%"}} type="text" placeholder="you may add a description" onChange={(e)=>setReportDescription(e.target.value)}></input>
-                    <button className="add-butt" onClick={()=>dispatch(addWorkHours(projectName,projectFrom,projectTo,projectDate, reportDescription, projectStatus))} > Add </button>
+                    <button className="add-butt" onClick={update} > Add </button>
                 </div>
             </div>
-            {reportData.map((value,index)=>{return <ReportRaw key={"report"+index} report={value}/>})}
+            {reportsByUser()}
+            {reports.map((value,index)=>{return <ReportRaw key={"report"+index} report={value}/>})}
             <div style={{margin:"50px"}}> </div>
         </div>
     )

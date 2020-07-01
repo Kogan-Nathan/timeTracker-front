@@ -90,8 +90,8 @@ export default function UserArea(props) {
         props.update(props.project.projectName)
     }
     return (
-        <div className="">
-            <input type="checkbox" onChange={sendInfo}/>
+        <div className="area">
+            <input className="checkbox" type="checkbox" onChange={sendInfo}/>
             {isOpen? <div className="inline border-simple">
                 <GoTriangleUp className="color-zan cursor" onClick={toggle}/>
                 <input type="text" placeholder={props.project.projectName} onChange={(e)=>{setProjectsName(e.target.value)}}/>
@@ -101,7 +101,7 @@ export default function UserArea(props) {
                 <span>Total Workers: {totalWorkersCalc()}{/* pull information from DB about how many workers worked on this proj */}</span>
                 <span>Status: {props.project.projectStatus}h</span>
                 <span>Start Date: {props.project.ProjectDate.toDateString()}</span>
-                <button className="button background-color" onClick={checkUpdates}>Update Info</button>
+                <button className="button general-butt" onClick={checkUpdates}>Update Info</button>
             </div> : <div className="inline border-simple">
                 <GoTriangleDown className="color-zan cursor" onClick={toggle}/>
                 <span className="">{props.project.projectName}</span>

@@ -26,7 +26,7 @@ export default function SpesificTime() {
     const onlySpesificTime = () =>{ 
         if(toDate&&fromDate){
             // filter by user id --- >
-            let tempReports = reportData.filter(value => value.reportUserName===users[UserIndex].name)
+            let tempReports = reportData.filter(value => value.reportUserId===users[UserIndex].id)
             // the reports for the spesific time choosen --- >
             let tempfilter = tempReports.filter(report => moment(report.reportDate).isBetween(fromDate, toDate))
             setReportForSpesific(tempfilter)    

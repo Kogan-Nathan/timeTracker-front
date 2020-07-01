@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect, useHistory} from 'react-router-dom'
 import './App.css';
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
@@ -7,16 +7,8 @@ import Header from './Components/Header'
 import Footer from './Components/Footer';
 import Admin from './Components/AdminPage';
 import Homepage from './Components/HomePage';
-// import Timetracker from './Components/Timetracker'
-// import Summary from './Components/Summary'
-// import Project from './Components/Project'
-// import Users from './Components/Users'
-import Last7days from './Components/Last7days'
-import ThisMonth from './Components/ThisMonth'
-import SpesificTime from './Components/SpesificTime'
 import UserPage from './Components/UserPage'
 import { useSelector } from 'react-redux'
-
 
 function App() {
   const IsLoggedInfo = useSelector(state=>state.isLogged)

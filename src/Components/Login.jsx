@@ -43,8 +43,13 @@ export default function Login(){
         // checks if email and password are found.
         // if false, displays span#"wrong-email" & span#"wrong-password"
         // if true, sets isLogged to true and displays a different page
-        if(AdminInfo.email===email&&AdminInfo.password===password){
-            dispatch(adminIsLogged())
+        if(email==="timeAdmin@zangula.com"){
+            if(AdminInfo.email===email&&AdminInfo.password===password){
+                dispatch(adminIsLogged())
+            }
+            else{
+                setWrongPasswordSpan(true)
+            }
         }
         else {
             if(UsersInfo.length===0){
@@ -57,6 +62,7 @@ export default function Login(){
                 }
                 else{
                     if(UsersInfo[UserIndex].email===email&&UsersInfo[UserIndex].password===password){
+                        setWrongPasswordSpan(false)
                         dispatch(isLogged(UserIndex))
                     }
                     else{

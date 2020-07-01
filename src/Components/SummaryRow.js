@@ -13,7 +13,7 @@ export default function SummaryRow(props) {
         let hours = moment.utc(moment(toTime,"HH:mm").diff(moment(fromTime,"HH:mm"))).format("HH:mm")
         return hours
     }
-
+    //----------------------------------------------------------
     const getClient=()=>{
         let thisProject
         for( let i in Projects){
@@ -23,6 +23,7 @@ export default function SummaryRow(props) {
         }
         return thisProject
     }
+    //----------------------------------------------------------
     
     return (
         <div>

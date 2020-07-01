@@ -1,6 +1,6 @@
-const UsersReducer = (state = [{name:"abi", password:"123123qq", email:"timeUser@gmail.com", phone:"+972505555123", id:0, status:0},
+const UsersReducer = (state = [{name:"abi", password:"123123qq", email:"timeUser@gmail.com", phone:"+972505555123", id:2, status:0},
                                 {name:"Cloe Richards", password:"timeUserCheck1234", email:"timeUser12@gmail.com", phone:"+972505555123", id:1, status:0},
-                                {name:"John Doe", password:"timeUserCheck1234", email:"timeUser34@gmail.com", phone:"+972505555123", id:2, status:0}], action)=> {
+                                {name:"John Doe", password:"timeUserCheck1234", email:"timeUser34@gmail.com", phone:"+972505555123", id:0, status:0}], action)=> {
     switch (action.type) {
         case 'ADD_NEW_USER':
             if(state.length===0){
@@ -10,7 +10,7 @@ const UsersReducer = (state = [{name:"abi", password:"123123qq", email:"timeUser
             }
             else{
                 return state=[{name:action.nameData, password:action.passwordData,
-                    email:action.emailData, phone:action.phoneData,id:state.length+1,status:0}
+                    email:action.emailData, phone:action.phoneData,id:state.length,status:0}
                     ,...state]
             }
         // case 'DELETE_EXISTING_USER':

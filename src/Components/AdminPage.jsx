@@ -190,9 +190,9 @@ export default function AdminPage(props) {
                 <div className={props.class? "active" : ""}><p><Link to="/admin/users">Users</Link></p></div>
                 <div className={props.class? "" : "active"}><p><Link to="/admin/projects">Projects</Link></p></div>
             </div>
-            <div className="justify-evenly margin"> 
+            <div className="margin"> 
                 <input type="text" className="search-bar" onKeyUp={(e)=>{searchInput(e)}} placeholder="Search.."/>
-                <button className="button background-color" onClick={sendDeleteInfo}>Delete</button>
+                <button className="general-butt" onClick={sendDeleteInfo}>Delete</button>
             </div>
             <div className="">
                 {Display()}

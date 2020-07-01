@@ -16,30 +16,37 @@ export default function ThisMonth() {
     //----------------------------------------------------------
     const onlyThisWeek = () =>{
         if(show){
+            // debugger
             let startOfMonth = moment().startOf('month')
             let endOfMonth   = moment().endOf('month')
-    
             // filter by user id --- >
-            let tempReports = reportData.filter(value => value.reportUserName===users[UserIndex].name)
+            let tempReports = reportData.filter(value => value.reportUserId===users[UserIndex].id)
             // the reports for the current month --- >
             let tempfilter = tempReports.filter(report => moment(report.reportDate).isBetween(startOfMonth, endOfMonth))
-            setReportForMonth(tempfilter)  
-                                     
-            totalCalc()
-            setShow(false) 
-          
+            setReportForMonth(tempfilter)                          
+            totalCalc(tempfilter)
+            setShow(false)
         }
     }
     //----------------------------------------------------------
-    const totalCalc=()=>{
-        let totalHours = reportForMonth.filter(report => report.reportStatus)
-        totalHours = reportForMonth.slice(1).reduce((prev, cur)=> moment.duration(cur).add(prev), moment.duration(reportForMonth[0]))
+    const totalCalc=(tempfilter)=>{
+        let totalHoursArray = tempfilter.map(report => report.reportStatus)
+        console.log(totalHoursArray);
         
-        
-        // setTotal(totalHours)
-    }
+        totalHoursArray = totalHoursArray.slice(1).reduce((prev, cur)=> moment.duration(cur).add(prev), moment.duration(totalHoursArray[0]))
 
+        let convertHours = moment.duration(totalHoursArray).asHours() 
+
+        let totalTime = moment.duration(convertHours, 'hours');
+        let hours = Math.floor(totalTime.asHours());
+        let mins  = Math.floor(totalTime.asMinutes()) - hours * 60;
+
+        let result = hours + ":" + mins;
+        setTotal(result)
+        
+    }
     //----------------------------------------------------------
+
     return (
         <div>
             <h5 style={{paddingBottom:"30px"}}> This Month </h5>
@@ -57,9 +64,9 @@ export default function ThisMonth() {
             </div>
             {onlyThisWeek()}
             {reportForMonth.map((value,index)=>{return <SummaryRow key={"report"+index} report={value}/>})}
-            <div>
+            
             <div> <button className="login-butt"> Total: {total} </button> </div>
-            </div>
+           
         </div>
     )
 }
