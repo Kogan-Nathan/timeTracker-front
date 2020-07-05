@@ -1,179 +1,64 @@
+@import url("//fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800");
 .App {
   text-align: center;
-  min-height: 100%;
 }
-
 
 body, h1,h2,h3,h4,h5,h6,button,a,td,th,tr,input,Link{
-  /* vertical-align: baseline; */
   font-family: "montserrat";
+  letter-spacing: 0.6px;
 }
 
-/* ----------------------- header area ----------------------- */
-
-.header{
-  background-color: #5C5C5C;
-  padding: 50px;
-  padding-left: 140px;
-  padding-right: 140px;
-  min-height: 130px;
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
-.logo{
-  font-size: 50px;
-  font-weight: 600;
-  display: flex;
-  float: left;
-  margin-left: 20px;
+h1{
+  font-weight: 400;
   color: #00C9CD;
-}
-
-.logo:visited{
-  color: #00C9CD;
-}
-
-.logo:hover{
-  color: #00C9CD;
-  text-decoration: none;
-}
-
-.buttons-area{
-  display: flex;
-  float: right;
-  margin-top: -20px;
-}
-
-
-.LinkHeader:hover{
-  text-decoration: none;
-}
-
-.login-butt{
-  font-family: "montserrat";
-  border: solid 2px #00C9CD;
-  color: #00C9CD;
-  background-color: transparent;
-  border-radius: 50px;
-  padding: 15px;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin: 20px;
-  width: 122px;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.login-butt:hover{
-  color: #5C5C5C;
-  background-color: #fff;
-  border-color: #fff;
-}
-
-.login-butt:focus{
-  outline: none;
-  border: none;
-}
-
-.signup-butt{
-  font-family: "montserrat";
-  border: solid 2px #00C9CD;
-  color: #5C5C5C;
-  background-color: #00C9CD;
-  border-radius: 50px;
-  /* padding-left: 20px;
-  padding-right: 20px; */
-  margin: 20px;
-  /* display: inline-block; */
-  width: 122px;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.signup-butt:hover{
-  color: #fff;
-  background-color: transparent;
-  border-color: #fff;
-}
-
-.signup-butt:focus{
-    outline: none;
-    border: none;
-}
-
-/* ---------------------------------------------- */
-
-.main-div{
-  margin-top: 80px;
-}
-
-
-input{
-  padding: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-
-.submit{
-  padding: 15px;
-  border-radius: 50px;
-  border: solid 1px transparent;
-  width: 400px;
-  color: #000;
-  background-color:#00C9CD;
-  font-family: "montserrat";
-  font-weight: 700;
-
-}
-
-.submit:hover{
-  color: #00C9CD;
-  background-color: transparent;
-  border: solid 2px #00C9CD;
-}
-
-.submit:focus{
-  outline: none;
-  border: none;
-}
-
-.inputArea{
-  border: 0;
-  border-bottom: 1px solid #000;
-  font-family: "montserrat";
-  padding: 0px;
-  margin: 15px;
-  width: 400px;
-  font-size: 20px;
-}
-
-.inputArea:focus{
-  outline: none;
-}
-
-
-
-
-/* ---------------------- footer area ------------------------ */
-
-html {
-  position: relative;
-  min-height: 100vh;
 }
 
 .main{
   height: 100vh;
+  margin: 80px auto auto auto;
+  text-align: center;
 }
+
+a:visited, a:active, a{
+  text-decoration: none;
+}
+
+.cursor{
+  cursor: pointer;
+}
+
+.logo{
+  font-size: 28px;
+  font-weight: 700;
+  display: flex;
+  float: left;
+  margin-left: 20px;
+  color: #00C9CD;
+  text-decoration: none;
+  letter-spacing: 0.9px;
+}
+
+.logo:visited, .logo:active, .logo:hover, .signup-redirection:visited, .signup-redirection:active, .signup-redirection{
+  text-decoration: none;
+  color: #00C9CD;
+}
+
+.header{
+  background-color: #242424;;
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.welcome{
+  color: #fff;
+
+}
+
 .footer{
-  background-color: #5C5C5C;
-  padding-top: 10px;
-  /* position: relative;
-  bottom: 0; */
-  /* margin-top: -200px; */
-  width:100%;
-  height:80px; 
-  overflow: hidden;
+  background-color: #242424;;
+  padding: 20px;
 }
 
 .list{
@@ -188,9 +73,331 @@ ul{
 
 li{
   padding: 20px;
-  /* margin-bottom: 50px; */
   display: inline-block;
   color: #fff
+}
+
+.buttons-area{
+  display: flex;
+  float: right;
+}
+
+.login-butt{
+  border: solid 2px #00C9CD;
+  background-color: transparent;
+  padding: 15px 28px
+}
+
+.total-butt{
+  border: solid 2px #00C9CD;
+  background-color: transparent;
+  padding: 15px 28px
+}
+
+.signup-butt{
+  border: 2px #00C9CD solid;
+  padding: 15px 20px
+}
+
+.login-butt:visited, .login-butt:active .login-butt{
+  color: #00C9CD;
+}
+
+.signup-butt:visited, .signup-butt:active .signup-butt{
+  color: #242424;
+}
+
+.login-butt:hover{
+  color: #242424;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.signup-butt:hover, .signup-butt a:hover{
+  color: #fff;
+  background-color: transparent;
+  border-color: #fff;
+}
+
+.signup-redirection{
+  font-weight: 500;
+}
+
+.signup-new{
+  margin-top: 10px;
+}
+
+.login-butt, .signup-butt, .logout-butt, .total-butt{
+  margin: 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.logout-butt{
+  color: #00C9CD;
+  background-color: transparent;
+  border: 2px #00C9CD solid;
+  padding: 15px 24px;  
+}
+
+.add-butt{
+  color: #00C9CD;
+  background-color: transparent;
+  border: 2px #00C9CD solid;
+  padding: 15px 40px;
+  width: 100%;
+}
+
+.add-butt:hover{
+  background-color: #00C9CD;
+  color: #fff;
+  border: 2px solid #00C9CD;
+}
+
+.addAdmin-butt{
+  color: #242424;
+  background-color: #00C9CD;
+  border: none;
+  border-radius: 50px;
+  padding: 15px 40px;
+  /* margin: auto; */
+}
+
+.addAdmin-butt:hover{
+  background-color: #C5EEEF;
+  color: #242424;
+}
+
+.hidden-flag{
+  visibility: hidden;
+}
+
+button{
+  cursor: pointer;
+}
+
+/* -------------------------- inputs ------------------------- */
+
+input:focus, .inputArea:focus, button:focus{
+  outline: none;
+}
+
+
+.input:focus{
+  outline: none;
+}
+
+.inputTime{
+  /* border: 1px solid #000; */
+  border: none;
+  font-family: "montserrat";
+  padding: 10px 25px;
+  margin-right: 2px;
+  /* width: 250px; */
+  font-size: 16px;
+  background-color: #C5EEEF;
+  color: #242424;
+}
+
+::placeholder{
+  color: #242424;
+  opacity: 1;
+}
+
+.inputTime:hover{
+  background-color: #00C9CD;
+}
+
+.description{
+  width: 100%
+}
+
+.adminInputs{
+  width: 100%;
+  margin-left: 10px;
+}
+
+.align-input{
+  position: relative;
+}
+
+
+
+/* -------------------------- selects ------------------------- */
+
+select{
+  -webkit-appearance:none;
+}
+
+select:focus{
+  outline: none;
+}
+
+.submit{
+  padding: 15px;
+  border-radius: 50px;
+  border: solid 2px transparent;
+  width: 250px;
+  color: #242424;
+  background-color:#00C9CD;
+  font-family: "montserrat";
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.submit:hover{
+  color: #00C9CD;
+  background-color: transparent;
+  border: solid 2px #00C9CD;
+}
+
+.submit:focus{
+  border: none;
+}
+
+.inputArea{
+  border: 0;
+  border-bottom: 1px solid #242424;
+  font-family: "montserrat";
+  padding: 0px;
+  margin: 15px;
+  width: 250px;
+  font-size: 16px;
+}
+
+.search-bar{
+  border: 1px solid #242424;
+  border-radius: 50px;
+  padding: 10px;
+  width: 90%;
+  height: 20px;
+}
+
+
+.admin-nav{
+  width: 50%;
+  margin: auto;
+}
+
+.link{
+  font-size: 20px;
+  color: #242424;
+}
+
+.link:hover{
+  font-size: 20px;
+  color: #00c9cd;
+  text-decoration: none;
+}
+
+
+.admin-nav div{
+  width: 30%;
+  margin: 10px 0px;
+}
+
+.justify-evenly{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.justify{
+  display: contents;
+}
+
+.active::after{
+  content: '';
+  width: 100%;
+  height: 3px;
+  background-color:#00c9cd;
+  display: block;
+}
+
+.active{
+  font-weight: 700;
+}
+
+.color-zan{
+  color: #00c9cd;
+}
+
+.color{
+  color: #f39033
+}
+
+.background-color{
+  background-color: #00c9cd;
+  color: black;
+}
+
+.search-bar{
+  margin: auto;
+}
+
+.input{
+  width: 40%;
+  margin: 10px;
+  padding: 5px;
+}
+
+.margin{
+  margin: 15px;
+}
+
+.border-simple{
+  padding: 5px;
+  border: 1px solid #242424;
+  margin: 0px 0px 25px 30px;
+  text-align: left;
+  height: 50%;
+}
+
+/* .checkboxInput{
+  width: 35px;
+  height: 35px;
+  top: 12px;
+} */      
+
+input[type="checkbox"] {
+    width: 100%;
+    height: 100%;
+    margin-right: 8px;
+    cursor: pointer;
+    visibility: hidden;
+    border: solid 1px transparent;
+    position: relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input[type=checkbox]:after {
+  content: "";
+  background-color: #C5EEEF;
+  display: inline-block;
+  margin-left: 10px;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  visibility: visible;
+  position: absolute;
+  margin-top: -4px;
+}
+
+input[type=checkbox]:checked:after {
+  content: "X";
+  font-weight: bold;
+  font-size: 35px;
+  background-color: #00C9CD;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+
+.inline{
+  display: inline-block;
 }
 
 .tableConatainer{
@@ -210,6 +417,12 @@ li{
 .trHeading{
   font-weight: 700;
   font-size: 22px;
+  background-color: #242424;
+  color: white;
+}
+
+table{
+  border-collapse: collapse;
 }
 
 td{
@@ -217,21 +430,26 @@ td{
   width: 200px;
   min-width: 200px;
   max-width: 200px;
+  vertical-align: middle;
+  padding: 15px 0px;
 }
 
 th{
-  border: solid 1px #000;
+  border: solid 1px #242424;
   width: 335px;
+  vertical-align: middle;
+  font-weight: 400;
+  padding: 10px 0px;
 }
 /* -------------------------- nav bar ------------------------- */
 
 .nav-bar_container{
-  margin-top: 100px;
+  margin-top: 70px;
   margin-bottom: 40px;
 }
 
 .navbar {
-  width: 60%;
+  width: 100%;
   display: inline-block;
   align-items: center;
   min-height: 10vh;
@@ -252,9 +470,10 @@ th{
   display: inline-block;
   align-items: center;
   list-style: none;
-  font-size: 28px;
+  font-size: 25px;
   text-decoration: none;
   color: #5C5C5C;
+  padding: 20px 80px;
 }
 
 .nav-links:hover{
@@ -278,12 +497,13 @@ th{
 
 .select-box {
   position: relative;
-  display: block;
+  display: inline-block;
   font-family: "montserrat";
-  font-size: 28px;
+  font-size: 25px;
   color: #5C5C5C;
   border: none;
-
+  width: 150px;
+  margin: 0px 50px;
 }
 
 .select-box:hover{
@@ -300,28 +520,293 @@ th{
   background-color: #fff;
 }
 
-/* .select-items {
-  color: #ffffff;
-  padding: 8px 16px;
-  border: 1px solid transparent;
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-  cursor: pointer;
+.select-items {
+  color: black;
+  font-size: 16px;
   background-color: #fff;
 }
 
-.select-items div,.select-selected {
-  color: #ffffff;
-  padding: 8px 16px;
-  border: 1px solid transparent;
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-  cursor: pointer;
+.totalHrs{
+  background-color:#242424;
+  color:#fff;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  border: none;
 }
 
-.select-items {
-  position: absolute;
-  background-color: DodgerBlue;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 99;
-} */
+.spaceForTable{
+  margin: 50px 0px;
+}
+/*--------------- grid ----------------*/
+
+.area{
+  width: 95%;
+  margin: auto;
+}
+
+.grid {
+  display: grid;
+  grid-gap: 0.2rem;
+  grid-template-columns: 
+    1fr 1fr 1fr 1fr 200px;
+  grid-template-areas:
+    "a  b  c  d  butt"
+}
+
+.butt {
+  grid-area: butt;
+}
+
+.grid-for-description{
+  display: grid;
+  grid-gap: 0.2rem;
+  grid-template-columns: 
+    1fr 200px;
+  grid-template-areas:
+    "des      butt"
+}
+
+.description {
+  grid-area: butt;
+}
+
+.adminNav-grid{
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 
+    1fr 250px 250px 1fr;
+  grid-template-areas:
+    " a a ";
+}
+
+.adminNavLinks{
+  grid-area: a;
+}
+
+.grid-search{
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 
+  1fr 600px 200px 1fr;
+  grid-template-areas: 
+  "a search add a";
+}
+
+.adminSearch{
+  grid-area: search;
+}
+
+.grid-checkAndInfo{
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 
+  300px 50px 820px;
+  grid-template-areas: 
+  "b del info a";
+}
+
+.del{
+  grid-area: del;
+}
+
+.info{
+  grid-area: info;
+}
+
+.grid-info-small{
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns:
+  20px 200px 400px;
+  grid-template-areas: 
+  "arrow  name  email";
+}
+
+.arrow{
+  grid-area: arrow;
+  margin-top: 5px;
+}
+
+.name{
+  grid-area: name;
+  margin-top: 5px;
+}
+
+.email{
+  grid-area: email;
+  margin-top: 5px;
+}
+
+.grid-userInfo{
+  padding-top: 15px;
+  padding-right: 15px;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 
+  20px 1fr 1fr;
+  grid-template-areas:
+  "arrow username usermail"
+  "arrow pass phone"
+  "id status butt"
+}
+
+.username{
+  grid-area: username;
+}
+
+.usermail{
+  grid-area: usermail;
+}
+
+.pass{
+  grid-area: pass;
+  padding-left: 25px;
+}
+
+.phone{
+  grid-area: phone;
+  padding-left: 20px;
+}
+
+.grid-userInfoLast{
+  padding: 20px;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 
+  20px 200px 300px 180px;
+  grid-template-areas:
+  "arrow id status addButt";
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
+
+.id{
+  grid-area: id;
+}
+
+.status{
+  grid-area: status;
+}
+
+.addButt{
+  grid-area: addButt;
+  margin-top: -20px;
+}
+
+.grid-infoProject{
+  display: grid;
+  grid-gap: 1rem;
+  /* grid-template-columns: 
+  300px 50px 820px 300px; */
+  grid-template-areas: 
+  "b del info a";
+}
+
+.grid-projectAddInfo{
+  padding: 20px;
+  display: grid;
+  grid-gap: 1rem;
+  /* grid-template-columns: 
+  300px 20px 300px 300px 200px; */
+  grid-template-areas:
+  "arrowbefore arrow-projectname arrow-clientname clientinput arrow-projectman addnew";
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
+
+.arrow-projectname{
+  grid-area: arrow-projectname;
+  display: inline-flex;
+  justify-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.arrowbefore{
+  grid-area: arrowbefore;
+  display: inline-flex;
+  justify-items: center;
+  justify-content: center;
+  margin: auto;
+}
+.arrow-clientname{
+  grid-area: arrow-clientname;
+  display: inline-flex;
+  justify-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.clientinput{
+  grid-area: clientinput;
+  display: inline-flex;
+  justify-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.arrow-projectman{
+  grid-area: arrow-projectman;
+  display: inline-flex;
+  justify-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.addnew{
+  grid-area: addnew;
+  display: inline-flex;
+  justify-items: center;
+  justify-content: center;
+  /* margin: auto; */
+  /* padding: 10px; */
+  min-width: 220px;
+  height: 50px;
+}
+
+.grid-projectSmallInfo{
+  padding: 20px;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 
+  10px 120px 30px 150px 150px;
+  grid-template-areas:
+  "arrow nameproject dollarsign clientName pmanager";
+  /* margin-top: 50px; */
+  /* margin-bottom: 80px; */
+  margin: 20px;
+}
+
+.nameproject{
+  grid-area: nameproject;
+  display: inline-flex;
+  justify-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.dollarsign{
+  grid-area: dollarsign;
+  display: inline-flex;
+  justify-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.clientName{
+  grid-area: clientName;
+  display: inline-flex;
+  justify-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.pmanager{
+  grid-area: pmanager;
+  display: inline-flex;
+  justify-items: center;
+  justify-content: center;
+  margin: auto;
+}
