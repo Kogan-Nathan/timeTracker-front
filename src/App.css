@@ -1,10 +1,10 @@
 @import url("//fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800");
 .App {
   text-align: center;
+  /* font-size: calc(0.45em + 0.55vw); */
 }
 
 body, h1,h2,h3,h4,h5,h6,button,a,td,th,tr,input,Link{
-  /* vertical-align: baseline; */
   font-family: "montserrat";
   letter-spacing: 0.6px;
 }
@@ -15,13 +15,13 @@ h1{
 }
 
 .main{
-  margin-top: 80px;
-  height: 100vh;
+  min-height: 100vh;
+  margin: 80px auto auto auto;
+  text-align: center;
 }
 
 a:visited, a:active, a{
   text-decoration: none;
-  color: black;
 }
 
 .cursor{
@@ -45,16 +45,19 @@ a:visited, a:active, a{
 }
 
 .header{
-  background-color: #5c5c5c;
+  background-color: #242424;;
   padding: 50px;
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-between;
   align-items: center;
 }
 
+.welcome{
+  color: #fff;
+}
+
 .footer{
-  background-color: #5c5c5c;
+  background-color: #242424;;
   padding: 20px;
 }
 
@@ -70,7 +73,6 @@ ul{
 
 li{
   padding: 20px;
-  /* margin-bottom: 50px; */
   display: inline-block;
   color: #fff
 }
@@ -86,6 +88,12 @@ li{
   padding: 15px 28px
 }
 
+.total-butt{
+  border: solid 2px #00C9CD;
+  background-color: transparent;
+  padding: 15px 28px
+}
+
 .signup-butt{
   border: 2px #00C9CD solid;
   padding: 15px 20px
@@ -96,11 +104,11 @@ li{
 }
 
 .signup-butt:visited, .signup-butt:active .signup-butt{
-  color: #5c5c5c;
+  color: #242424;
 }
 
 .login-butt:hover{
-  color: #5C5C5C;
+  color: #242424;
   background-color: #fff;
   border-color: #fff;
 }
@@ -119,7 +127,7 @@ li{
   margin-top: 10px;
 }
 
-.login-butt, .signup-butt, .general-butt, .logout-butt{
+.login-butt, .signup-butt, .logout-butt, .total-butt{
   margin: 20px;
   border-radius: 50px;
   font-size: 16px;
@@ -137,14 +145,26 @@ li{
   color: #00C9CD;
   background-color: transparent;
   border: 2px #00C9CD solid;
-  padding: 15px;
+  width: 100%;
 }
 
-.general-butt{
-  color: #5C5C5C;
+.add-butt:hover{
   background-color: #00C9CD;
-  border: 2px #00C9CD solid;
-  padding: 15px 20px;
+  color: #fff;
+  border: 2px solid #00C9CD;
+}
+
+.addAdmin-butt{
+  color: #242424;
+  background-color: #00C9CD;
+  border: none;
+  border-radius: 50px;
+  padding: 15px 40px;
+}
+
+.addAdmin-butt:hover{
+  background-color: #C5EEEF;
+  color: #242424;
 }
 
 .hidden-flag{
@@ -155,17 +175,60 @@ button{
   cursor: pointer;
 }
 
+/* -------------------------- inputs ------------------------- */
+
 input:focus, .inputArea:focus, button:focus{
   outline: none;
 }
 
+.input:focus{
+  outline: none;
+}
+
+.inputTime{
+  border: none;
+  font-family: "montserrat";
+  padding: 10px 10px;
+  font-size: 16px;
+  background-color: #C5EEEF;
+  color: #242424;
+}
+
+::placeholder{
+  color: #242424;
+  opacity: 1;
+}
+
+.inputTime:hover{
+  background-color: #00C9CD;
+}
+
+.description{
+  padding: 15px 10px
+}
+
+.align-input{
+  position: relative;
+}
+
+/* -------------------------- selects ------------------------- */
+
+select{
+  -webkit-appearance:none;
+}
+
+select:focus{
+  outline: none;
+}
+
 .submit{
-  padding: 15px 25px;
+  padding: 15px;
   border-radius: 50px;
-  border: solid 1px transparent;
+  border: solid 2px transparent;
   width: 250px;
-  color: #000;
+  color: #242424;
   background-color:#00C9CD;
+  font-family: "montserrat";
   font-weight: 600;
   font-size: 16px;
 }
@@ -182,7 +245,7 @@ input:focus, .inputArea:focus, button:focus{
 
 .inputArea{
   border: 0;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #242424;
   font-family: "montserrat";
   padding: 0px;
   margin: 15px;
@@ -191,25 +254,27 @@ input:focus, .inputArea:focus, button:focus{
 }
 
 .search-bar{
-  border: 1px solid #5c5c5c;
+  border: 1px solid #242424;
   border-radius: 50px;
   padding: 10px;
-}
-
-/* .input, .search-bar{
-  border: 1px solid #5c5c5c;
-  border-radius: 50px;
-  padding: 10px;
-} */
-
-.area{
   width: 90%;
-  margin: auto;
+  height: 20px;
 }
 
 .admin-nav{
   width: 50%;
   margin: auto;
+}
+
+.link{
+  font-size: 20px;
+  color: #242424;
+}
+
+.link:hover{
+  font-size: 20px;
+  color: #00c9cd;
+  text-decoration: none;
 }
 
 .admin-nav div{
@@ -229,7 +294,6 @@ input:focus, .inputArea:focus, button:focus{
 .active::after{
   content: '';
   width: 100%;
-  margin-top: 5px;
   height: 3px;
   background-color:#00c9cd;
   display: block;
@@ -240,7 +304,7 @@ input:focus, .inputArea:focus, button:focus{
 }
 
 .color-zan{
-  color: #00c9cd
+  color: #00c9cd;
 }
 
 .color{
@@ -253,14 +317,7 @@ input:focus, .inputArea:focus, button:focus{
 }
 
 .search-bar{
-  width: 30%;
-  height: 30px;
-}
-
-.input{
-  width: 160px;
-  margin: 10px;
-  padding: 5px;
+  margin: auto;
 }
 
 .margin{
@@ -269,32 +326,44 @@ input:focus, .inputArea:focus, button:focus{
 
 .border-simple{
   padding: 5px;
-  border: 1px solid #5c5c5c;
-  margin: 5px 0px;
-  width: 50%;
-}
+  border: 1px solid #242424;
+  margin: 0px 0px 25px 30px;
+  text-align: left;
+  }
 
-.grid-small{
-  display: grid;
-}
-
-.grid-big{
-  display: grid;
-}
-
-/* .grid-item1{
-
-} */
-
-.checkbox{
+input[type="checkbox"] {
+  width: 100%;
+  height: 100%;
+  margin-right: 8px;
+  cursor: pointer;
+  visibility: hidden;
+  border: solid 1px transparent;
   position: relative;
-  top: 10px;
-  margin: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
-input[type="checkbox"]{
-  width: 32px;
-  height: 32px;
+input[type=checkbox]:after {
+  content: "";
+  background-color: #C5EEEF;
+  display: inline-block;
+  margin-left: 10px;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  visibility: visible;
+  position: absolute;
+}
+
+input[type=checkbox]:checked:after {
+  content: "X";
+  font-weight: bold;
+  font-size: 35px;
+  background-color: #00C9CD;
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .inline{
@@ -333,6 +402,7 @@ td{
   min-width: 200px;
   max-width: 200px;
   vertical-align: middle;
+  padding: 15px 0px;
 }
 
 th{
@@ -341,6 +411,21 @@ th{
   vertical-align: middle;
   font-weight: 400;
   padding: 10px 0px;
+}
+
+.td-spesific{
+  border: none;
+  font-family: "montserrat";
+  padding: 10px 10px;
+  font-size: 16px;
+  background-color: #C5EEEF;
+  color: #242424;
+}
+
+.h-spesific{
+  color: #00C9CD;
+  padding-bottom: 30px;
+  font-weight: 600;
 }
 /* -------------------------- nav bar ------------------------- */
 
@@ -365,7 +450,6 @@ th{
   display: flex;
   justify-content: flex-end;
 }
-
 
 .nav-links {
   display: inline-block;
@@ -426,3 +510,453 @@ th{
   font-size: 16px;
   background-color: #fff;
 }
+
+.totalHrs{
+  background-color:#242424;
+  color:#fff;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  border: none;
+}
+
+.spaceForTable{
+  margin: 50px 0px;
+}
+/*--------------- grid ----------------*/
+
+.area{
+  width: 95%;
+  margin: auto;
+}
+
+.grid {
+  display: grid;
+  grid-gap: 0.2rem;
+  grid-template-columns: 
+    1fr 1fr 1fr 1fr 200px;
+  grid-template-areas:
+    "a  b  c  d  butt"
+}
+
+.butt {
+  grid-area: butt;
+}
+
+.grid-for-description{
+  display: grid;
+  grid-gap: 0.2rem;
+  grid-template-columns: 
+    1fr 200px;
+  grid-template-areas:
+    "des butt"
+}
+
+.description {
+  grid-area: butt;
+}
+
+.adminNav-grid{
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 
+    1fr 250px 250px 1fr;
+  grid-template-areas:
+    "a a";
+}
+
+.adminNavLinks{
+  grid-area: a;
+}
+
+.grid-search{
+  display: grid;
+  margin-top: 50px;
+  grid-gap: 1rem;
+  grid-template-columns: 
+  1fr 670px 200px 1fr;
+  grid-template-areas: 
+  "search add";
+}
+
+.adminSearch{
+  grid-area: search;
+}
+
+.grid-checkAndInfo{
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 
+  auto 50px 820px;
+  grid-template-areas: 
+  "b del info a";
+}
+
+.del{
+  grid-area: del;
+  display: inline-flex;
+  justify-items: center;
+  justify-content: center;
+  margin: auto;
+
+}
+
+.info{
+  grid-area: info;
+}
+
+.grid-info-small{
+  padding: 15px;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns:
+  20px 200px 400px;
+  grid-template-areas: 
+  "arrow  name  email";
+}
+
+.arrow{
+  grid-area: arrow;
+  margin-top: 5px;
+}
+
+.name{
+  grid-area: name;
+  margin-top: 5px;
+}
+
+.email{
+  grid-area: email;
+  margin-top: 5px;
+}
+
+.grid-userInfo{
+  padding: 15px 15px 0px 15px;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 
+  20px 1fr 1fr;
+  grid-template-areas:
+  "arrow username usermail"
+  "arrow pass phone"
+  "id status butt"
+}
+
+.username{
+  grid-area: username;
+  padding-left: 25px;
+}
+
+.usermail{
+  grid-area: usermail;
+  padding-left: 25px;
+}
+
+.pass{
+  grid-area: pass;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+}
+
+.pass input, .phone input, .pm input{
+  width: 100%;
+  max-height: 19.2px;
+  margin-top: 8px;
+}
+
+.phone{
+  grid-area: phone;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+}
+
+.grid-userInfoLast{
+  padding: 15px 15px 0px 15px;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 
+  20px 200px 300px 180px;
+  grid-template-areas:
+  "arrow id status addButt";
+  margin-top: 70px;
+}
+
+.id{
+  grid-area: id;
+}
+
+.status{
+  grid-area: status;
+}
+
+.addButt{
+  grid-area: addButt;
+  margin-top: -20px;
+}
+
+.grid-infoProject{
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 
+  auto 50px 820px ;
+  grid-template-areas: 
+  "c del info d";
+}
+
+.c{
+  grid-area: c;
+  display: inline-flex;
+  justify-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.grid-projectAddInfo{
+  padding: 15px 15px 15px 50px;
+  display: grid;
+  grid-gap: 0.6rem;
+  max-width: 850px;
+  margin: auto;
+  grid-template-columns: 
+  20px 1fr 1fr 220px;
+  grid-template-areas:
+  "arrowbefore arrow-projectname arrow-projectname addnew"
+  "arrow-clientname clientinput arrow-projectman addnew";
+  margin-bottom: 50px;
+  justify-content: center;
+}
+
+.arrow-projectname{
+  grid-area: arrow-projectname;
+  margin: auto;
+  width: 100%;
+  display: inline-flex;
+}
+
+.arrow-projectname input{
+  width: 100%;
+}
+
+.arrowbefore{
+  grid-area: arrowbefore;
+  display: inline-flex;
+  justify-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.arrow-clientname{
+  grid-area: arrow-clientname;
+  margin: auto;
+}
+
+.clientinput{
+  grid-area: clientinput;
+  display: inline-flex;
+  margin: auto;
+  width: 100%;
+}
+
+.arrow-projectman{
+  grid-area: arrow-projectman;
+  display: inline-flex;
+  margin: auto;
+  width: 100%;
+}
+
+.addnew{
+  grid-area: addnew;
+  display: block;
+  height: 94px;
+  max-width: 220px;
+}
+
+.grid-projectSmallInfo{
+  padding: 15px;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: 
+  20px 1fr 30px 1fr 1fr;
+  grid-template-areas:
+  "arrow nameproject dollarsign clientName pmanager";
+}
+
+.nameproject{
+  grid-area: nameproject;
+  margin: 0px;
+  text-align: left;
+}
+
+.dollarsign{
+  grid-area: dollarsign;
+  display: inline-flex;
+  justify-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.clientName{
+  grid-area: clientName;
+  margin: 0px;
+  text-align: left;
+}
+
+.pmanager{
+  grid-area: pmanager;
+  margin: 0px;
+  text-align: left;
+}
+
+.grid-projectAddAdminInfo{
+  padding: 15px 15px 0px 15px;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 
+  20px 1fr 20px 1fr;
+  grid-template-areas:
+  "arrowbefore arrow-projectname arrow-clientname clientinput"
+  "arrowbefore pm . date"
+  "arrowbefore workers status addButton";
+}
+
+.grid-projectAddAdminInfoLast{
+  padding-top: 15px;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 
+  20px 255px 255px 180px;
+  grid-template-areas:
+  "arrow workers status addButton";
+  margin-top: 50px;
+}
+
+.workers{
+  grid-area: workers;
+}
+
+.status{
+  grid-area: status;
+}
+
+.date{
+  grid-area: date;
+  justify-items: center;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.pm{
+  grid-area: pm;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.addButton{
+  grid-area: addButton;
+}
+
+.grid-userNewReport{
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 
+  1fr 1fr 1fr 1fr 200px;
+  grid-template-areas:
+    "select1 from to dateinput totalhrs"
+    "select2 select2 select2 select2 add-repo";
+}
+
+.from input, .to input, .dateinput input, .select2 input{
+  width: 100%;
+}
+
+.select1{
+  grid-area: select1;
+  display: inline-flex;
+  width: 100%;
+}
+
+.select2{
+  grid-area: select2;
+  display: inline-flex;
+  width: 100%;
+}
+
+.from{
+  grid-area: from;
+  display: inline-flex;
+  width: 100%;
+}
+
+.to{
+  grid-area: to;
+  display: inline-flex;
+  width: 100%;
+}
+
+.dateinput{
+  grid-area: dateinput;
+  display: inline-flex;
+  width: 100%;
+}
+
+.totalhrs{
+  grid-area: totalhrs;
+}
+
+.add-repo{
+  grid-area: add-repo;
+}
+
+@media only screen and (max-width: 1300px) {
+  .grid-projectAddInfo{
+    grid-template-columns: 20px 190px 18px 250px 220px 190px;
+  }
+  .grid-userInfo, .grid-info-small, .grid-userInfoLast, .grid-projectAddAdminInfo, .grid-projectAddInfo{
+    grid-gap: 0.6rem;
+  }
+  .inputTime{
+    max-width: 150px;
+  }
+  .addAdmin-butt{
+    padding: 15px 35px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .grid-search{
+    grid-template-columns: 1fr 60% 200px 1fr;
+  }
+  .grid-projectAddInfo{
+    grid-template-columns: 20px 160px 18px 220px 190px 160px;
+  }
+  .grid-infoProject, .grid-checkAndInfo{
+    grid-template-columns: auto 45px 650px;
+  }
+  .grid-userInfoLast{
+    grid-template-columns: 20px 140px 250px 140px;
+  }
+  .grid-userInfo, .grid-info-small, .grid-userInfoLast, .grid-projectAddAdminInfo, .grid-projectAddInfo{
+    grid-gap: 0.4rem;
+  }
+  .inputTime{
+    max-width: 120px;
+  }
+  .addAdmin-butt{
+    padding: 15px 25px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .adminNav-grid{
+    grid-template-columns: 1fr 35% 35% 1fr;
+  }
+  .addAdmin-butt{
+    padding: 15px 15px;
+  }
+}
+

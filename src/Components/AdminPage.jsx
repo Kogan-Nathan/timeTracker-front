@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import UserArea from './UserArea'
 import ProjectArea from './ProjectArea'
 import {Link} from 'react-router-dom'
-// import { GoSearch } from 'react-icons/go';
 import { GoTriangleRight } from 'react-icons/go';
 import { FaDollarSign } from 'react-icons/fa';
+import moment from 'moment' 
 import { addNewProject, adminNewProject, deleteProjects, adminDeleteProjects, adminDeleteUsers } from '../Actions';
 
 
@@ -19,7 +19,6 @@ export default function AdminPage(props) {
     const [ProjectClient, setProjectClient] = useState()
     const [ProjectManager, setProjectManager] = useState()
     const [ProjectCost, setProjectCost] = useState(false)
-    // const [ProjectDate, setProjectDate] = useState(new Date())
 
     const dispatch = useDispatch();
     const users = useSelector(state=>state.Users)
@@ -90,7 +89,7 @@ export default function AdminPage(props) {
             if(ProjectName!==undefined){
                 if(ProjectClient!==undefined){
                     if(ProjectManager!==undefined){
-                        dispatch(addNewProject(ProjectName, ProjectClient, ProjectManager, new Date(), ProjectCost))
+                        dispatch(addNewProject(ProjectName, ProjectClient, ProjectManager, moment().format("YYYY-MM-DD"), ProjectCost))
                         dispatch(adminNewProject(ProjectName))
                     }
                     else{
@@ -114,7 +113,7 @@ export default function AdminPage(props) {
                 else{
                     if(ProjectClient!==undefined){
                         if(ProjectManager!==undefined){
-                            dispatch(addNewProject(ProjectName, ProjectClient, ProjectManager, new Date(), ProjectCost))
+                            dispatch(addNewProject(ProjectName, ProjectClient, ProjectManager, moment().format("YYYY-MM-DD"), ProjectCost))
                             dispatch(adminNewProject(ProjectName, ProjectClient))
                         }
                         else{
@@ -149,32 +148,67 @@ export default function AdminPage(props) {
         else if(props.displayPage==="Projects"){
             if(SearchBar!==""){
                 return(
-                    <div>
-                        <div className="justify border-simple">
-                            <GoTriangleRight className="color-zan"/>
-                            <input type="text" placeholder="Project Name" onChange={(e)=>{setProjectsName(e.target.value)}}/>
-                            <FaDollarSign className={ProjectCost? "color-zan cursor" : "cursor color"} onClick={()=>{setProjectCost(!ProjectCost)}}/>
-                            <span>Client:</span><input type="text" placeholder="Clients Name" onChange={(e)=>{setProjectClient(e.target.value)}}/>
-                            <span>PM:</span><input type="text" placeholder="Project Manager" onChange={(e)=>{setProjectManager(e.target.value)}}/>
-                            {/* <span>Start Date: <input type="date" onChange={(e)=>{setProjectDate(e.target.value)}}/></span> */}
-                            <button className="add-butt" onClick={checkUpdates}>Add New Project</button>
+                    <div className="area">
+                        <div className="grid-projectAddInfo">
+                            <div className="arrowbefore">
+                                <GoTriangleRight className="color-zan"/>
+                            </div>
+                            <div className="arrow-projectname">
+                                <input className="inputTime" type="text" placeholder="Project Name"
+                                onChange={(e)=>{setProjectsName(e.target.value)}}/>
+                            </div>
+                            <div className="arrow-clientname">
+                            <FaDollarSign className={ProjectCost? "color-zan cursor" : "cursor color"}
+                            onClick={()=>{setProjectCost(!ProjectCost)}}/>
+                            </div>
+                            <div className="clientinput">
+                                <p>Client:  </p>
+                                <input className="inputTime clientinput" type="text" placeholder="Clients Name"
+                                onChange={(e)=>{setProjectClient(e.target.value)}}/>
+                            </div>
+                                <div className="arrow-projectman">
+                                <p>PM:  </p>
+                                <input className="inputTime arrow-projectman" type="text" placeholder="Project Manager"
+                                onChange={(e)=>{setProjectManager(e.target.value)}}/>
+                            </div>
+                            <div className="addnew">
+                                <button className="add-butt addnew" onClick={checkUpdates}>Add Project</button>
+                            </div>
                         </div>
                         {TemporaryArray.map(value=>{return <ProjectArea key={value.projectName} project={value} update={UpdateProjectsToBeDeleted}/>})}
                     </div>
                 )
+
             } //if the search isnt empty it is showing the search result
             // and if it is empty it is showing the original users DB
             else{
                 return(
-                    <div>
-                        <div className="justify border-simple">
-                            <GoTriangleRight className="color-zan"/>
-                            <input type="text" placeholder="Project Name" onChange={(e)=>{setProjectsName(e.target.value)}}/>
-                            <FaDollarSign className={ProjectCost? "color-zan cursor" : "cursor color"} onClick={()=>{setProjectCost(!ProjectCost)}}/>
-                            <span>Client:</span><input type="text" placeholder="Clients Name" onChange={(e)=>{setProjectClient(e.target.value)}}/>
-                            <span>PM:</span><input type="text" placeholder="Project Manager" onChange={(e)=>{setProjectManager(e.target.value)}}/>
-                            {/* <span>Start Date: <input type="date" onChange={(e)=>{setProjectDate(e.target.value)}}/></span> */}
-                            <button className="add-butt" onClick={checkUpdates}>Add New Project</button>
+                    <div className="area">
+                        <div className="grid-projectAddInfo">
+                            <div className="arrowbefore">
+                                <GoTriangleRight className="color-zan"/>
+                            </div>
+                            <div className="arrow-projectname">
+                                <input className="inputTime" type="text" placeholder="Project Name"
+                                onChange={(e)=>{setProjectsName(e.target.value)}}/>
+                            </div>
+                            <div className="arrow-clientname">
+                            <FaDollarSign className={ProjectCost? "color-zan cursor" : "cursor color"}
+                            onClick={()=>{setProjectCost(!ProjectCost)}}/>
+                            </div>
+                            <div className="clientinput">
+                                <p>Client:  </p>
+                                <input className="inputTime clientinput" type="text" placeholder="Clients Name"
+                                onChange={(e)=>{setProjectClient(e.target.value)}}/>
+                            </div>
+                                <div className="arrow-projectman">
+                                <p>PM:  </p>
+                                <input className="inputTime arrow-projectman" type="text" placeholder="Project Manager"
+                                onChange={(e)=>{setProjectManager(e.target.value)}}/>
+                            </div>
+                            <div className="addnew">
+                                <button className="add-butt addnew" onClick={checkUpdates}>Add Project</button>
+                            </div>
                         </div>
                         {projects.map(value=>{return <ProjectArea key={value.projectName} project={value} update={UpdateProjectsToBeDeleted}/>})}
                     </div>
@@ -183,20 +217,25 @@ export default function AdminPage(props) {
         }
     }
     //----------------------------------------------------------
-
     return (
-        <div className="admin-page main">
-            <div className="admin-nav justify-evenly">                
-                <div className={props.class? "active" : ""}><p><Link to="/admin/users">Users</Link></p></div>
-                <div className={props.class? "" : "active"}><p><Link to="/admin/projects">Projects</Link></p></div>
+        <div className="main">
+            <div className="adminNav-grid">
+                <div className="a"></div>         
+                <div className={props.class? "active a" : "a"}><p><Link className="link" to="/admin/users">Users</Link></p></div>
+                <div className={props.class? "a" : "active a"}><p><Link className="link" to="/admin/projects">Projects</Link></p></div>
+                <div className="a"></div>      
             </div>
-            <div className="margin"> 
-                <input type="text" className="search-bar" onKeyUp={(e)=>{searchInput(e)}} placeholder="Search.."/>
-                <button className="general-butt" onClick={sendDeleteInfo}>Delete</button>
+            <div> 
+                <div className="grid-search">
+                <div className="a"></div> 
+                    <input type="text" className="search-bar search" onKeyUp={(e)=>{searchInput(e)}} placeholder="Search.."/>
+                    <button className="button addAdmin-butt add" onClick={sendDeleteInfo}>Delete</button>
+                <div className="a"></div> 
+                </div>
             </div>
-            <div className="">
+            <div className="spaceForTable">
                 {Display()}
             </div>
-        </div>
+        </div> 
     )
 }

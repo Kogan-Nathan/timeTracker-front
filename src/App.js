@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect, useHistory} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
 import './App.css';
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
@@ -7,22 +7,13 @@ import Header from './Components/Header'
 import Footer from './Components/Footer';
 import Admin from './Components/AdminPage';
 import Homepage from './Components/HomePage';
-// import Timetracker from './Components/Timetracker'
-// import Summary from './Components/Summary'
-// import Project from './Components/Project'
-// import Users from './Components/Users'
-// import Last7days from './Components/Last7days'
-// import ThisMonth from './Components/ThisMonth'
-// import SpesificTime from './Components/SpesificTime'
 import UserPage from './Components/UserPage'
 import { useSelector } from 'react-redux'
-
 
 function App() {
   const IsLoggedInfo = useSelector(state=>state.isLogged)
   const users = useSelector(state=>state.Users)
   const UserIndex = useSelector(state=>state.isLogged.userIndex)
-  const history = useHistory();
 
   const PrivateRoute = ({component: Component})=> {
     return(
@@ -34,9 +25,7 @@ function App() {
             )
           }
           else{
-            // history.push(`/last7days/user=${userRoute}`)              
             return(
-              
               <Redirect to="/" />
             )
           }
@@ -109,9 +98,6 @@ function App() {
         <Header/>
         <Switch>
           {/* Routes */}
-          {/* {users.map((user,index)=>{
-            return <PrivateRoute exact path={"/user="+user[0].userName} key={"user"+index} component={()=>{return <UserPage Settings={"General"}/>}}/>
-          })} */}
           <Route exact path="/" component={()=>{return <Homepage/>}}/>
           <IsLoggedRoute exact path="/signup" component={()=>{return <SignUp/>}}/>
           <IsLoggedRoute exact path="/login" component={()=>{return <Login/>}}/>
@@ -121,37 +107,24 @@ function App() {
           }}/>
           <AdminRoute exact path="/admin/projects" component={()=>{return <Admin displayPage={"Projects"} class={false}/>
           }}/>
-          {/* {users.map((user,index)=>{
-            return <PrivateRoute exact path={"/userpage/user="+user.id} key={"user"+index} component={()=>{return <UserPage displayPage={"Timetracker"}/>}}/>
-          })} */}
           {users.map((user,index)=>{
             return <PrivateRoute exact path={"/timetracker/user="+user.id} key={"user"+index} component={()=>{return <UserPage displayPage={"Timetracker"}/>}}/>
           })}
-                    {/* {users.map((user,index)=>{
-            return <PrivateRoute exact path={"/summary/user="+user.id} key={"user"+index} component={()=>{return <UserPage displayPage={"Summary"}/>}}/>
-          })} */}
-                    {users.map((user,index)=>{
+          {users.map((user,index)=>{
             return <PrivateRoute exact path={"/project/user="+user.id} key={"user"+index} component={()=>{return <UserPage displayPage={"Project"}/>}}/>
           })}
-                    {users.map((user,index)=>{
+          {users.map((user,index)=>{
             return <PrivateRoute exact path={"/users/user="+user.id} key={"user"+index} component={()=>{return <UserPage displayPage={"Users"}/>}}/>
           })}
-                    {users.map((user,index)=>{
+          {users.map((user,index)=>{
             return <PrivateRoute exact path={"/last7days/user="+user.id} key={"user"+index} component={()=>{return <UserPage displayPage={"Last 7 days"}/>}}/>
           })}
-                    {users.map((user,index)=>{
+          {users.map((user,index)=>{
             return <PrivateRoute exact path={"/thismonth/user="+user.id} key={"user"+index} component={()=>{return <UserPage displayPage={"This month"}/>}}/>
           })}
-                    {users.map((user,index)=>{
+          {users.map((user,index)=>{
             return <PrivateRoute exact path={"/spesifictime/user="+user.id} key={"user"+index} component={()=>{return <UserPage displayPage={"Spesific time"}/>}}/>
           })}
-          {/* <Route exact path='/timetracker' component={()=> <Timetracker/>}/>
-          <Route exact path='/summary' component={()=> <Summary/>}/>
-          <Route exact path='/project' component={()=> <Project/>}/>
-          <Route exact path='/users' component={()=> <Users/>}/>
-          <Route exact path='/last7days' component={()=> <Last7days/>}/>   
-          <Route exact path='/thismonth' component={()=> <ThisMonth/>}/>
-          <Route exact path='/spesifictime' component={()=> <SpesificTime/>}/> */}
         </Switch>
         <Footer/>
       </Router>

@@ -33,7 +33,7 @@ export default function SummaryRow(props) {
                         <td> {props.report.reportProjectName} </td>
                         <td>{getClient()}</td>
                         <td>{totaltimeCalc()} hrs</td>
-                        <td>{props.report.reportDate}</td>
+                        <td>{moment(props.report.reportDate).format("YYYY-MM-DD")}</td>
                     </tr>
                 </thead>
             </Table>

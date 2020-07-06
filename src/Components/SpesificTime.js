@@ -37,26 +37,26 @@ export default function SpesificTime() {
 
 
     return (
-        <div>
-            <h5 style={{paddingBottom:"30px"}}> Choose a Spesific Time </h5>
+        <div className="main">
+            <h3 className="h-spesific"> Choose a Spesific Time </h3>
             <Table className="tableProjects">
                 <thead>
                     <tr>
-                        <td className="lable"> From </td>
-                        <td><input className="input" type="date" placeholder="dd/mm/yyyy" onChange={handleFromDate}></input></td>
-                        <td className="lable" style={{marginLeft:"20px"}} > To </td>
-                        <td><input className="input" type="date" placeholder="dd/mm/yyyy" onChange={handleToDate} ></input></td>
+                        <td style={{border:"2px #fff solid"}} colSpan="2" className="td-spesific"> From 
+                        <input className="td-spesific cursor" type="date" placeholder="dd/mm/yyyy" max={new Date().toISOString().split("T")[0]} onChange={handleFromDate}></input></td>
+                        <td style={{border:"2px #fff solid",marginLeft:"20px"}} colSpan="2" className="td-spesific"> To 
+                        <input className="td-spesific cursor" type="date" placeholder="dd/mm/yyyy" max={new Date().toISOString().split("T")[0]} onChange={handleToDate} ></input></td>
                     </tr> 
                 </thead>
             </Table>
-            <div className="tableConatainer">
+            <div className="tableConatainer tableProjects" style={{marginTop:"10px"}}>
                 <Table className="tableProjectsHeading">
-                    <thead className="trHeading">
-                        <tr>
-                            <td> Project Name </td>
-                            <td> Client  </td>
-                            <td> Status  </td>
-                            <td> Date  </td>
+                    <thead >
+                        <tr className="trHeading">
+                            <th> Project Name </th>
+                            <th> Client  </th>
+                            <th> Status  </th>
+                            <th> Date  </th>
                         </tr>
                     </thead> 
                 </Table>

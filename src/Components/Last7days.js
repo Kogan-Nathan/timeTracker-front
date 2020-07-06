@@ -47,8 +47,8 @@ export default function Last7days() {
 
     return (
         <div className="main">
-                <h5 style={{paddingBottom:"30px"}}> Last 7 days </h5>
-                <div className="tableConatainer">
+                <h3 className="h-spesific"> Last 7 days </h3>
+                <div className="tableConatainer tableProjects">
                     <Table className="tableProjectsHeading">
                         <thead>
                             <tr className="trHeading">

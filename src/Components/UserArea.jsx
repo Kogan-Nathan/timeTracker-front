@@ -106,23 +106,49 @@ export default function UserArea(props) {
     const sendInfo=()=>{
         props.update(props.user.id)
     }
+    // return (
+    //     <div className="area">
+    //         <input className="checkbox" type="checkbox" onChange={sendInfo}/>
+    //         {isOpen? <div className="border-simple user-grid-big">
+    //             <GoTriangleUp className="color-zan cursor" onClick={toggle}/>
+    //             <input className="grid-user-item-2" type="text" placeholder={props.user.name} onChange={(e)=>{setUsersName(e.target.value)}}/>
+    //             <input className="grid-user-item-3" type="text" placeholder={props.user.email} onChange={(e)=>{checkValidEmail(e)}}/>
+    //             <span className="grid-user-item-4">Password: <input type="text" placeholder={props.user.password} onChange={(e)=>{checkValidPassword(e)}}/></span>
+    //             <span className="grid-user-item-5">Phone NO: <input type="text" placeholder={props.user.phone} onChange={(e)=>{checkValidPhone(e)}}/></span>
+    //             <span className="grid-user-item-6">Worker ID:{props.user.id}</span>
+    //             <span className="grid-user-item-7">Worker status: {convertStatusTime()} hrs</span>
+    //             <button className="button general-butt grid-user-item-8" onClick={checkUpdates}>Update Info</button>
+    //         </div> : <div className="border-simple user-grid-small">
+    //             <GoTriangleDown className="color-zan cursor" onClick={toggle}/>
+    //             <label className="">{props.user.name}</label>
+    //             <label className="">{props.user.email}</label>
+    //         </div>}
+    //     </div>
+    // )
+
     return (
-        <div className="area">
-            <input className="checkbox" type="checkbox" onChange={sendInfo}/>
-            {isOpen? <div className="inline border-simple">
-                <GoTriangleUp className="color-zan cursor" onClick={toggle}/>
-                <input type="text" placeholder={props.user.name} onChange={(e)=>{setUsersName(e.target.value)}}/>
-                <input type="text" placeholder={props.user.email} onChange={(e)=>{checkValidEmail(e)}}/>
-                <span>Password:</span><input type="text" placeholder={props.user.password} onChange={(e)=>{checkValidPassword(e)}}/>
-                <span>Phone number:</span><input type="text" placeholder={props.user.phone} onChange={(e)=>{checkValidPhone(e)}}/>
-                <span>Worker ID:{props.user.id}</span>
-                <span>Worker status:{convertStatusTime()} hrs</span>
-                <button className="button general-butt" onClick={checkUpdates}>Update Info</button>
-            </div> : <div className="inline border-simple">
-                <GoTriangleDown className="color-zan cursor" onClick={toggle}/>
-                <label className="">{props.user.name}</label>
-                <label className="">{props.user.email}</label>
-            </div>}
+        <div className="area"> 
+            <div className="grid-checkAndInfo">
+                <div className="b"></div>
+                <input className="checkbox del" type="checkbox" onChange={sendInfo}/>
+                {isOpen? <div className="border-simple grid-userInfo">
+                    <GoTriangleUp className="color-zan cursor" onClick={toggle}/>
+                        <input className="username inputTime" type="text" placeholder={props.user.name} onChange={(e)=>{setUsersName(e.target.value)}}/>
+                        <input className="usermail inputTime" type="text" placeholder={props.user.email} onChange={(e)=>{checkValidEmail(e)}}/>
+                        <div className="pass"><p>Password: </p><input className="inputTime" type="text" placeholder={props.user.password} onChange={(e)=>{checkValidPassword(e)}}/></div>
+                        <div className="phone"><p>Phone: </p><input className="inputTime" type="text" placeholder={props.user.phone} onChange={(e)=>{checkValidPhone(e)}}/></div>
+                    <div className="grid-userInfoLast">
+                        <span className="id">Worker ID:  {props.user.id}</span>
+                        <span className="status">Worker status: {convertStatusTime()} hrs</span>
+                        <button className="addButt addAdmin-butt" onClick={checkUpdates}>Update Info</button>
+                    </div>
+                </div> : 
+                <div className="border-simple grid-info-small">
+                    <GoTriangleDown className="color-zan cursor arrow" onClick={toggle}/>
+                    <label className="name">{props.user.name}</label>
+                    <label className="email">{props.user.email}</label>
+                </div>}
+            </div>
         </div>
     )
 }
