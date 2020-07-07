@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { GoTriangleDown } from 'react-icons/go';
 import { GoTriangleUp } from 'react-icons/go';
 import { FaDollarSign } from 'react-icons/fa';
+import moment from 'moment'
 import { addNewProject, adminNewProject, updateProjectName, adminUpdateProject, updatePM, updateClient, adminUpdateClient, updateCost } from '../Actions';
 
 export default function UserArea(props) {
@@ -42,6 +43,16 @@ export default function UserArea(props) {
             workersAmount.push(uniqueObject[i]);
         }
         return workersAmount.length
+    }
+    //----------------------------------------------------------
+    const convertStatus=(convertHours)=>{
+        let totalTime = moment.duration(convertHours, 'hours');
+        let hours = Math.floor(totalTime.asHours());
+        let mins  = Math.floor(totalTime.asMinutes()) - hours * 60;
+        hours = ((hours > 9) ? hours : ("0"+hours))
+        mins = ((mins > 9) ? mins : ("0"+mins))
+        let result = hours + ":" + mins;
+        return result
     }
     //----------------------------------------------------------
     const checkUpdates=()=>{
@@ -89,26 +100,34 @@ export default function UserArea(props) {
     const sendInfo=()=>{
         props.update(props.project.projectName)
     }
+
     return (
         <div className="area">
-            <input className="checkbox" type="checkbox" onChange={sendInfo}/>
-            {isOpen? <div className="inline border-simple">
-                <GoTriangleUp className="color-zan cursor" onClick={toggle}/>
-                <input type="text" placeholder={props.project.projectName} onChange={(e)=>{setProjectsName(e.target.value)}}/>
-                <FaDollarSign className={DollarClass? "cursor color-zan" : "cursor color"} onClick={changeClass}/>{/* checkbox designd as dollar sign, onchange setState for changeCost */}
-                <span>Client:</span><input type="text" placeholder={props.project.projectClient} onChange={(e)=>{setProjectClient(e.target.value)}}/>
-                <span>PM:</span><input type="text" placeholder={props.project.projectManager} onChange={(e)=>{setProjectManager(e.target.value)}}/>
-                <span>Total Workers: {totalWorkersCalc()}{/* pull information from DB about how many workers worked on this proj */}</span>
-                <span>Status: {props.project.projectStatus}h</span>
-                <span>Start Date: {props.project.ProjectDate.toDateString()}</span>
-                <button className="button general-butt" onClick={checkUpdates}>Update Info</button>
-            </div> : <div className="inline border-simple">
-                <GoTriangleDown className="color-zan cursor" onClick={toggle}/>
-                <span className="">{props.project.projectName}</span>
-                <FaDollarSign className={props.project.projectCost? "color-zan" : "color"}/>
-                <span className="">Client: {props.project.projectClient}</span>
-                <span className="">PM: {props.project.projectManager}</span>
-            </div>}
+            <div className="grid-infoProject">
+                <div className="c"></div>
+                        <input className="checkbox del" type="checkbox" onChange={sendInfo}/>
+                        {isOpen? <div className="border-simple grid-projectAddAdminInfo">
+                            <GoTriangleUp className="color-zan cursor" onClick={toggle}/>
+                            <div className="arrow-projectname"><input className="inputTime" type="text" placeholder={props.project.projectName} onChange={(e)=>{setProjectsName(e.target.value)}}/></div>
+                            <FaDollarSign className={DollarClass? "cursor color-zan  arrow-clientname" : "cursor color  arrow-clientname"} onClick={changeClass}/>
+                            <div className="clientinput"><p>Client: </p><input className="inputTime clientinput" type="text" placeholder={props.project.projectClient} onChange={(e)=>{setProjectClient(e.target.value)}}/></div>
+                            <div className="pm"><p>PM: </p><input type="text" className="inputTime" placeholder={props.project.projectManager} onChange={(e)=>{setProjectManager(e.target.value)}}/></div>
+                            <div className="date">Start Date: {props.project.ProjectDate}</div>
+                            <div className="grid-projectAddAdminInfoLast">
+                            <p className="workers">Total Workers: {totalWorkersCalc()}</p>
+                                <p className="status">Status: {convertStatus(props.project.projectStatus)}h</p>
+                                <button className="addButton addAdmin-butt add-butt" onClick={checkUpdates}>Update Info</button>        
+                            </div>
+                            </div> :
+                            <div className="border-simple grid-projectSmallInfo">
+                                <GoTriangleDown className="color-zan cursor arrow" onClick={toggle}/>
+                                <p className="nameproject">{props.project.projectName}</p>
+                                <FaDollarSign className={props.project.projectCost? "color-zan dollarsign" : "color dollarsign"}/>
+                                <p className="clientName">Client: {props.project.projectClient}</p>
+                                <p className="pmanager">PM: {props.project.projectManager}</p>
+                            </div>
+                        }
         </div>
-    )
+    </div>
+    )    
 }

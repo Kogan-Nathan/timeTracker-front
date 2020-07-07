@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect, useHistory} from 'react-router-dom'
-import './App.css';
+import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
 import Header from './Components/Header'
@@ -8,7 +8,7 @@ import Footer from './Components/Footer';
 import Admin from './Components/AdminPage';
 import Homepage from './Components/HomePage';
 import UserPage from './Components/UserPage'
-import { useSelector } from 'react-redux'
+import './App.css';
 
 function App() {
   const IsLoggedInfo = useSelector(state=>state.isLogged)

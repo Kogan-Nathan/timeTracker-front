@@ -9,13 +9,13 @@ export default function Users() {
 
     return (
         <div>
-            <div className="tableConatainer">
+            <div className="tableConatainer tableProjects">
             <Table className="tableProjectsHeading">
                 <thead className="trHeading">
                     <tr>
-                        <td> name </td>
-                        <td> email  </td>
-                        <td> projects  </td>
+                        <th> name </th>
+                        <th> email  </th>
+                        <th> projects  </th>
                     </tr>
                 </thead> 
             </Table>

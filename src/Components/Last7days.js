@@ -47,8 +47,8 @@ export default function Last7days() {
 
     return (
         <div className="main">
-                <h5 style={{paddingBottom:"30px"}}> Last 7 days </h5>
-                <div className="tableConatainer">
+                <h3 className="h-spesific"> Last 7 days </h3>
+                <div className="tableConatainer tableProjects">
                     <Table className="tableProjectsHeading">
                         <thead>
                             <tr className="trHeading">
@@ -63,7 +63,7 @@ export default function Last7days() {
             {onlyThisWeek()}
             {reportForWeek.map((value,index)=>{return <SummaryRow key={"report"+index} report={value}/>})}
             
-            <div> <button className="login-butt"> Total: {total} </button> </div>
+            <div> <button className="total-butt" style={{marginTop:"20px"}} > Total: {total} </button> </div>
         </div>
     )
 }

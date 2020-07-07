@@ -9,7 +9,7 @@ export default function Project() {
 
     return (
         <div>
-            <div className="tableConatainer">
+            <div className="tableConatainer tableProjects">
                 <Table className="tableProjectsHeading">
                     <thead className="trHeading">
                         <tr>

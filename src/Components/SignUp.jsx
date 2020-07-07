@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { useSelector, useDispatch} from 'react-redux'
+import { useDispatch} from 'react-redux'
 import {isLogged, addNewUser} from '../Actions'
 
 export default function Login(){
@@ -9,8 +9,6 @@ export default function Login(){
     const [password, setPassword] = useState()
     const [tempPassword, setTempPassword] =useState()
     const dispatch = useDispatch();
-
-    const UsersInfo = useSelector(state=>state.Users)
 
 
     const handleName=(e)=>{
@@ -77,10 +75,8 @@ export default function Login(){
         }
     }
 
-
-
     return(
-        <div className="main-div" style={{height: "68vh"}}>
+        <div className="main">
             <h1>Sign up</h1>
             <form>
                 <div>
@@ -105,7 +101,7 @@ export default function Login(){
                     <p id='errorPass2'></p>
                 </div>
                 <button className="submit" onClick={signed}>Submit</button>
-                </form>
-    </div>
+            </form>
+        </div>
     )
 }

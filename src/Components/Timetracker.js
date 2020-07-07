@@ -54,7 +54,6 @@ export default function Timetracker() {
     //----------------------------------------------------------
     const convertDate = (e) =>{
         let tempDate = e.target.value
-        tempDate = moment(tempDate).toString();
         setProjectDate(tempDate)
         total ()
     }
@@ -66,27 +65,25 @@ export default function Timetracker() {
                 <Table className="tableProjectsHeading">
                     <thead>
                         <tr className="trHeading">
-                            <td> Project name </td>
-                            <td> From </td>
-                            <td> To </td>
-                            <td> Date </td>
-                            <td> Total  </td>
+                            <th> Project name </th>
+                            <th> From </th>
+                            <th> To </th>
+                            <th> Date </th>
+                            <th> Total  </th>
                         </tr> 
                     </thead>
                 </Table>
-                <div className="justify-evenly" style={{width:"100%", marginBottom:"20px"}}>
-                    <select className="input" onChange={(e)=>setProjectName(e.target.value)}>
+                <div className="grid-userNewReport" style={{width:"100%", marginBottom:"20px"}}>
+                    <select className=" inputTime select1" onChange={(e)=>setProjectName(e.target.value)}>
                         <option>Select Project</option>
                         {Projects.map((value,index)=>{return <option key={"project"+index}>{value.projectName}</option>})}
                     </select>
-                    <input className="input" type="time" placeholder="From" onChange={(e)=>setProjectFrom(e.target.value)}/>
-                    <input className="input" type="time" placeholder="To" onChange={(e)=>setProjectTo(e.target.value)}/>
-                    <input className="input" type="date" placeholder="todays date" max={new Date().toISOString().split("T")[0]} onChange={convertDate}/>
-                    <span style={{backgroundColor:"#242424", color:"#fff",padding:"15px", marginLeft:"10px", marginRight:"10px"}}>total hrs: {projectStatus}</span>
-                </div>
-                <div style={{width:"100%"}}>
-                    <input style={{width:"80%"}} type="text" placeholder="you may add a description" onChange={(e)=>setReportDescription(e.target.value)}></input>
-                    <button className="add-butt" onClick={update} > Add </button>
+                    <div className="from"><input className="inputTime" type="time" placeholder="From" onChange={(e)=>setProjectFrom(e.target.value)}/></div>
+                    <div className="to"><input className="inputTime" type="time" placeholder="To" onChange={(e)=>setProjectTo(e.target.value)}/></div>
+                    <div className="dateinput"><input className="inputTime" type="date" placeholder="todays date" max={new Date().toISOString().split("T")[0]} onChange={convertDate}/></div>
+                    <span className="totalhrs" style={{backgroundColor:"#242424", color:"#fff",padding:"15px"}}>total hrs: {projectStatus}</span>
+                    <div className="select2"><input className="description inputTime" type="text" placeholder="you may add a description" onChange={(e)=>setReportDescription(e.target.value)}></input></div>
+                    <button className="add-butt add-repo" onClick={update} > Add </button>
                 </div>
             </div>
             {reportsByUser()}

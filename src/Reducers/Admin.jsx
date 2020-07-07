@@ -1,4 +1,4 @@
-const AdminReducer = (state = {name:"Admin Admin", password:"timetrackeradmin1234", email:"timeAdmin@zangula.com", projects:[]}, action)=> {
+const AdminReducer = (state = {name:"Admin Admin", password:"time123123", email:"timeAdmin@zangula.com", projects:[{project:"BlueHawk",client:"svddsvsd"},{project:"Matah",client:"hjjhm"},{project:"Clockify",client:"kikg"}]}, action)=> {
     switch (action.type) {
             case 'ADMIN_NEW_PROJECT':
                 return {...state, projects: [{project : action.projectNameData, client : action.clientNameData},...state.projects]}
@@ -15,13 +15,6 @@ const AdminReducer = (state = {name:"Admin Admin", password:"timetrackeradmin123
                 let tempArray = [...state.projects];
                 tempArray[action.projectIndexData].client = action.clientNameData
                 return {...state, projects: tempArray}
-            // case 'ADD_NEW_CLIENT':
-            //     return Object.assign({}, state, {
-            //         clients: state.clients.concat(action.clientNameData)
-            //       })
-            // case 'ADMIN_DELETE_CLIENT':
-            //     let tempClients = state.clients.filter((value,index)=>(index!==action.clientIndexData));
-            //     return {...state, projects: tempClients}
         default:
             return state
     }

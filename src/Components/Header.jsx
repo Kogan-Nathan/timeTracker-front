@@ -32,7 +32,7 @@ export default function Header() {
                 <Link to="/" className="logo"> TimeTracker </Link>
                 <div className="buttons-area"> 
                 {IsLoggedInfo.isLogged? <div>
-                <span>Welcome {getName()}</span>
+                <span className="welcome">Welcome, {getName()}</span>
                         <button className="logout-butt" onClick={logout}>Log out</button> 
                     </div> : 
                     <div>

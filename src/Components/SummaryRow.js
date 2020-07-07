@@ -30,10 +30,10 @@ export default function SummaryRow(props) {
             <Table className="tableProjects">
                 <thead>
                     <tr>
-                        <td> {props.report.reportProjectName} </td>
-                        <td>{getClient()}</td>
-                        <td>{totaltimeCalc()} hrs</td>
-                        <td>{props.report.reportDate}</td>
+                        <td className="summaryTd"> {props.report.reportProjectName} </td>
+                        <td className="summaryTd">{getClient()}</td>
+                        <td className="summaryTd">{totaltimeCalc()} hrs</td>
+                        <td className="summaryTd">{moment(props.report.reportDate).format("DD-MM-YY")}</td>
                     </tr>
                 </thead>
             </Table>

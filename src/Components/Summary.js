@@ -4,7 +4,7 @@ import Nav from './Nav'
 export default function Summary() {
 
     return (
-        <div className="main">
+        <div>
             <Nav/>
             <table className="tableProjects">
                 <tr>

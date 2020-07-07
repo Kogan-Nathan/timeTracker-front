@@ -1,6 +1,4 @@
-import React,{useState} from 'react'
-import {useSelector} from 'react-redux'
-import moment from 'moment'
+import React from 'react'
 import Nav from './Nav'
 import Timetracker from './Timetracker'
 import Last7days from './Last7days'

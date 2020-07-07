@@ -48,9 +48,9 @@ export default function ThisMonth() {
     //----------------------------------------------------------
 
     return (
-        <div>
-            <h5 style={{paddingBottom:"30px"}}> This Month </h5>
-            <div className="tableConatainer">
+        <div className="main">
+            <h3 className="h-spesific"> This Month </h3>
+            <div className="tableConatainer tableProjects">
             <Table className="tableProjectsHeading">
                 <thead>
                     <tr className="trHeading">
@@ -65,7 +65,7 @@ export default function ThisMonth() {
             {onlyThisWeek()}
             {reportForMonth.map((value,index)=>{return <SummaryRow key={"report"+index} report={value}/>})}
             
-            <div> <button className="login-butt"> Total: {total} </button> </div>
+            <div> <button className="total-butt" style={{marginTop:"20px"}}> Total: {total} </button> </div>
            
         </div>
     )

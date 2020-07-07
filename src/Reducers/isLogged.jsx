@@ -1,3 +1,4 @@
+  
 const loggedReducer = (state = {isLogged:false, user:"", userIndex:null}, action)=>{
     switch(action.type){
         case 'SIGN_IN':

@@ -43,13 +43,8 @@ export default function Login(){
         // checks if email and password are found.
         // if false, displays span#"wrong-email" & span#"wrong-password"
         // if true, sets isLogged to true and displays a different page
-        if(email==="timeAdmin@zangula.com"){
-            if(AdminInfo.email===email&&AdminInfo.password===password){
-                dispatch(adminIsLogged())
-            }
-            else{
-                setWrongPasswordSpan(true)
-            }
+        if(AdminInfo.email===email&&AdminInfo.password===password){
+            dispatch(adminIsLogged())
         }
         else {
             if(UsersInfo.length===0){
@@ -62,7 +57,6 @@ export default function Login(){
                 }
                 else{
                     if(UsersInfo[UserIndex].email===email&&UsersInfo[UserIndex].password===password){
-                        setWrongPasswordSpan(false)
                         dispatch(isLogged(UserIndex))
                     }
                     else{
@@ -80,12 +74,12 @@ export default function Login(){
                 <div>
                     <input className="inputArea" type="text" name="email" placeholder="Enter email" onChange={(e)=>{checkValidEmail(e)}}/><br/>
                     <span className={wrongEmailSpan? "" : "hidden-flag"} id="wrong-email">email is not correct</span><br/>
-                    <span className={isEmailValid? "" : "hidden-flag"}>email is not valid</span><br/>
+                    <span className={isEmailValid? "" : "hidden-flag"} id="valid-email" >email is not valid</span><br/>
                 </div>
                 <div>
                     <input className="inputArea" type="password" placeholder="Enter password" onChange={(e)=>{checkValidPassword(e)}}/><br/>
                     <span className={wrongPasswordSpan? "" :"hidden-flag"} id="wrong-password">password is not correct</span><br/>
-                    <span className={isPasswordValid? "" : "hidden-flag"}>password is not valid</span><br/>
+                    <span className={isPasswordValid? "" : "hidden-flag"} id="valid-password">password is not valid</span><br/>
                 </div>
                 <div>
                     <button className="submit" onClick={validLogIn}>Submit</button><br/>
