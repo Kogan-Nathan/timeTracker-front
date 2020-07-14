@@ -77,18 +77,12 @@ li{
   color: #fff
 }
 
-.buttons-area{
+/* .buttons-area{
   display: flex;
   float: right;
-}
+} */
 
-.login-butt{
-  border: solid 2px #00C9CD;
-  background-color: transparent;
-  padding: 15px 28px
-}
-
-.total-butt{
+.login-butt, .total-butt{
   border: solid 2px #00C9CD;
   background-color: transparent;
   padding: 15px 28px
@@ -171,17 +165,13 @@ li{
   visibility: hidden;
 }
 
-button{
+/* button{
   cursor: pointer;
-}
+} */
 
 /* -------------------------- inputs ------------------------- */
 
 input:focus, .inputArea:focus, button:focus{
-  outline: none;
-}
-
-.input:focus{
   outline: none;
 }
 
@@ -326,7 +316,7 @@ select:focus{
 }
 
 .border-simple{
-  padding: 5px;
+  /* padding: 5px; */
   border: 1px solid #242424;
   margin: 0px 0px 25px 30px;
   text-align: left;
@@ -438,7 +428,6 @@ th{
   display: inline-block;
   align-items: center;
   min-height: 10vh;
-  /* padding: 0 10px; */
   margin: auto;
   background-color: transparent;
 }
@@ -916,61 +905,76 @@ th{
   .grid-info-small{
     grid-template-columns: 20px 1fr 1fr;
   }
+
   .grid-search{
     grid-template-columns: 1fr 60% 120px 1fr;
   }
+
   .grid-infoProject, .grid-checkAndInfo{
     grid-template-columns: 1fr 45px 75% 1fr;
   }
+
   .grid-userInfo, .grid-info-small, .grid-userInfoLast, .grid-projectAddAdminInfo,
   .grid-projectAddInfo, .grid-projectSmallInfo,.grid-projectAddAdminInfoLast,
   .grid-projectAddInfo{
     grid-gap: 0.6rem;
   }
+
   .grid-projectSmallInfo{
     grid-template-columns: 20px 0.5fr 20px 1fr 1fr;
   }
+
   .grid-userInfoLast{
     grid-template-columns: 20px 120px 160px 140px;
   }
+
   .grid-projectAddAdminInfoLast{
     grid-template-columns: 20px 150px 140px 120px;
   }
+
   .addAdmin-butt{
     padding: 15px 15px;
   }
+
   .area .grid-projectAddInfo{
     width: 80%;
   }
+
   .grid-projectAddInfo{
     grid-template-columns: 20px 1fr 1fr 110px;
   }
+  
   .add-butt{
     width: 92%;
   }
-  /* .logout-butt{
-    padding: 10px 20px;
-  } */
+
   .login-butt, .signup-butt, .welcome, .logout-butt{
     margin-left: 5px;
     font-size: 10px;
   }
+
   .login-butt{
     padding: 7px 16px;
   }
+
   .signup-butt{
     padding: 7px 10px;
   }
+
   .logout-butt{
     padding: 7px 10px;
   }
+
   .main{
     min-height: 70vh;
   }
+
   .inputArea{
     margin: 25px;
     width: 300px;
   }
+
+
   /* user work space */
 
   .grid-userNewReport{
@@ -1130,6 +1134,7 @@ th{
   .addnew{
     height: 96%;
   }
+
   /** header **/
 
   h1{
@@ -1152,30 +1157,38 @@ th{
     margin-left: 5px;
     font-size: 10px;
   }
+
   .login-butt, .total-butt{
     padding: 7px 16px;
   }
+
   .signup-butt{
     padding: 7px 10px;
   }
+
   .logout-butt{
     padding: 7px 10px;
   }
+
   .main{
     min-height: 78vh;
     margin: 25px 0px 0px 0px;
   }
+
   .inputArea{
     margin: 10px;
     width: 200px;
     font-size: 13px;
   }
+
   .submit{
     width: 150px;
   }
+
   .signup-new{
     font-size: 12px;
   }
+
   .nav-links, .select-box{
     font-size: 16px;
     padding: 5px 10px;
@@ -1227,25 +1240,19 @@ th{
     padding: 5px;
   }
 
-  /* input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-}
-input[type=time]::-webkit-calendar-picker-indicator{
-  display: none;
-  -webkit-appearance: none;
-} */
-
   .totalhrs{
     font-size: 10px;
     padding: 2px;
   }
+
   .add-repo{
     width: 100%;
   }
+
   .tableProjects{
     width: 300px;
   }
+
   .reportTd{
     width: 48px;
     display: inline-block;
@@ -1254,6 +1261,7 @@ input[type=time]::-webkit-calendar-picker-indicator{
     font-size: 10px;
     padding: 5px
   }
+
   .summaryTd{
     width: 62px;
   }
@@ -1267,6 +1275,7 @@ input[type=time]::-webkit-calendar-picker-indicator{
     font-size: 14px;
     padding: 3px;
   }
+
   input[type="date"]::-webkit-calendar-picker-indicator {
     margin-right:8px;
     font-size: 14px;
@@ -1281,16 +1290,3 @@ input[type=time]::-webkit-calendar-picker-indicator{
     padding: 5px
   }
 }
-
-
-
-
-/* @media only screen and (max-width: 600px) {
-  .adminNav-grid{
-    grid-template-columns: 1fr 45% 45% 1fr;
-  }
-  .addAdmin-butt{
-    padding: 15px 15px;
-  }
-} */
-
