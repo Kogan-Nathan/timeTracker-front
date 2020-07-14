@@ -13,7 +13,6 @@ export default function Login(){
 
     const AdminInfo = useSelector(state=>state.Admin)
     const UsersInfo = useSelector(state=>state.Users)
-    // const IsLoggedInfo = useSelector(state=>state.isLogged)
     const dispatch = useDispatch();
 
     //----------------------------------------------------------
@@ -42,9 +41,14 @@ export default function Login(){
     const validLogIn=()=>{
         // checks if email and password are found.
         // if false, displays span#"wrong-email" & span#"wrong-password"
-        // if true, sets isLogged to true and displays a different page
-        if(AdminInfo.email===email&&AdminInfo.password===password){
-            dispatch(adminIsLogged())
+        // if true, dispatches isLogged
+        if(email==="timeAdmin@zangula.com"){
+            if(AdminInfo.email===email&&AdminInfo.password===password){
+                dispatch(adminIsLogged())
+            }
+            else{
+                setWrongPasswordSpan(true)
+            }
         }
         else {
             if(UsersInfo.length===0){
@@ -57,6 +61,7 @@ export default function Login(){
                 }
                 else{
                     if(UsersInfo[UserIndex].email===email&&UsersInfo[UserIndex].password===password){
+                        setWrongPasswordSpan(false)
                         dispatch(isLogged(UserIndex))
                     }
                     else{

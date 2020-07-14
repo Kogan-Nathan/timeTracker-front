@@ -16,7 +16,6 @@ export default function ThisMonth() {
     //----------------------------------------------------------
     const onlyThisWeek = () =>{
         if(show){
-            // debugger
             let startOfMonth = moment().startOf('month')
             let endOfMonth   = moment().endOf('month')
             // filter by user id --- >
@@ -43,7 +42,6 @@ export default function ThisMonth() {
 
         let result = hours + ":" + mins;
         setTotal(result)
-        
     }
     //----------------------------------------------------------
 
@@ -64,9 +62,7 @@ export default function ThisMonth() {
             </div>
             {onlyThisWeek()}
             {reportForMonth.map((value,index)=>{return <SummaryRow key={"report"+index} report={value}/>})}
-            
-            <div> <button className="total-butt" style={{marginTop:"20px"}}> Total: {total} </button> </div>
-           
+            <div> <button className="total-butt" style={{marginTop:"20px"}}> Total: {total} </button> </div>  
         </div>
     )
 }

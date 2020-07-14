@@ -24,8 +24,6 @@ export default function SpesificTime() {
         setFromDate(e.target.value)
     }
 
-
-
     const onlySpesificTime = () =>{ 
         if(toDate&&fromDate){
             // filter by user id --- >
@@ -54,7 +52,6 @@ export default function SpesificTime() {
         setTotal(result)
         
     }
-
 
     return (
         <div>
@@ -85,9 +82,8 @@ export default function SpesificTime() {
             reportForSpesific.map((value,index)=>{return <SummaryRow key={"report"+index} report={value}/>})
             }
             <div>
-            <div> <button className="login-butt" style={{marginTop:"20px"}} onClick={()=> onlySpesificTime()} > Total: {total} </button> </div>
+                <button className="login-butt" style={{marginTop:"20px"}} onClick={()=> onlySpesificTime()}> Total: {total} </button>
             </div>
-
         </div>
     )
 }

@@ -13,16 +13,10 @@ const UsersReducer = (state = [{name:"abi", password:"123123qq", email:"timeUser
                     email:action.emailData, phone:action.phoneData,id:state.length,status:0}
                     ,...state]
             }
-        // case 'DELETE_EXISTING_USER':
-        //     let temp = state.filter((value,index)=>(index!==action.userIndexData));
-        //     state=temp;
-        //     return state=[...state]
         case 'ADMIN_DELETE_USERS':
-            // assuming we are sending the users id value as array "usersToBeDeletedData" 
+            //we are sending the users id value as array "usersToBeDeletedData" 
             let usersToBeDeleted=action.usersToBeDeletedData;
             let tempUsers = state.filter(value => !usersToBeDeleted.includes(value.id));
-            // usersToBeDeleted.sort(function(a,b){ return b - a; }); //for cases when the array is not in an ascending order
-            // let tempUsers = state.filter((value, index) => !usersToBeDeleted.indexOf(index)=== -1);
             state=tempUsers;
             return state=[...state]
         case 'UPDATE_USER_NAME':

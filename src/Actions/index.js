@@ -9,13 +9,6 @@ export const addNewProject = (projectName, projectClient, projectManager, projec
     };
 };
 
-// export const deleteSpecificProject = (projectName) =>{
-//     return {
-//         type: "DELETE_PROJECT",
-//         projectNameData : projectName
-//     };
-// };
-
 export const deleteProjects = (projectsToBeDeleted) =>{
     return {
         type: "DELETE_PROJECTS",
@@ -112,20 +105,6 @@ export const adminUpdateClient = (projectIndex, clientName) =>{
         clientNameData : clientName
     };
 };
-
-// export const adminAddNewClient = (clientName) =>{
-//     return {
-//         type: "ADD_NEW_CLIENT",
-//         clientNameData : clientName
-//     };
-// };
-
-// export const adminDeleteClient = (clientIndex) =>{
-//     return {
-//         type: "ADMIN_DELETE_CLIENT",
-//         clientIndexData : clientIndex
-//     };
-// };
 
 export const addNewUser = (userName, userPassword, userEmail, userPhone) =>{
     return {

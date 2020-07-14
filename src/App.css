@@ -1,7 +1,6 @@
 @import url("//fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800");
 .App {
   text-align: center;
-  /* font-size: calc(0.45em + 0.55vw); */
 }
 
 body, h1,h2,h3,h4,h5,h6,button,a,td,th,tr,input,Link{
@@ -76,11 +75,6 @@ li{
   display: inline-block;
   color: #fff
 }
-
-/* .buttons-area{
-  display: flex;
-  float: right;
-} */
 
 .login-butt, .total-butt{
   border: solid 2px #00C9CD;
@@ -164,10 +158,6 @@ li{
 .hidden-flag{
   visibility: hidden;
 }
-
-/* button{
-  cursor: pointer;
-} */
 
 /* -------------------------- inputs ------------------------- */
 
@@ -316,7 +306,6 @@ select:focus{
 }
 
 .border-simple{
-  /* padding: 5px; */
   border: 1px solid #242424;
   margin: 0px 0px 25px 30px;
   text-align: left;
@@ -900,7 +889,6 @@ th{
   grid-area: add-repo;
 }
 
-
 @media only screen and (max-width: 768px){
   .grid-info-small{
     grid-template-columns: 20px 1fr 1fr;
@@ -973,8 +961,6 @@ th{
     margin: 25px;
     width: 300px;
   }
-
-
   /* user work space */
 
   .grid-userNewReport{
@@ -1003,8 +989,6 @@ th{
     width: 130px;
   }
 }
-
-
 
 /**** mobile ****/
 
@@ -1047,7 +1031,6 @@ th{
     margin: 0px 0px 5px 0px;
     padding: 2px 6px 2px 2px;
   }
-
 
   .grid-userInfo, .grid-info-small, .grid-userInfoLast, .grid-projectAddAdminInfo,
   .grid-projectAddInfo, .grid-projectSmallInfo,.grid-projectAddAdminInfoLast,
@@ -1107,7 +1090,6 @@ th{
     padding: 5px;
   }
 
-  
   .area .grid-projectAddInfo{
     width: 80%;
   }
@@ -1217,24 +1199,27 @@ th{
     font-size: 10px;
   }
 
-
-
   /* user work space */
   .nav-bar_container{
     margin: 25px 0px;
   }
+
   .grid-userNewReport{
     grid-gap: 0.1rem;
   }
+
   .tableConatainer{
     width: 300px;
   }
+
   .trHeading{
     font-size: 12px;
   }
+
   .grid-userNewReport{
   grid-template-columns: 90px 45px 45px 60px 52px;
   }
+
   .inputTime{
     font-size: 10px;
     padding: 5px;

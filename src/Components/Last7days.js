@@ -72,11 +72,9 @@ export default function Last7days() {
       })}
 
       <div>
-        {" "}
         <button className="total-butt" style={{ marginTop: "20px" }}>
-          {" "}
-          Total: {total}{" "}
-        </button>{" "}
+          Total: {total}
+        </button>
       </div>
     </div>
   );

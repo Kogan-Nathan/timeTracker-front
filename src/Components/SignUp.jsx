@@ -57,11 +57,9 @@ export default function Login(){
 
     
     const handleMatchPass=(e)=>{
-        
         if(e.target.value === tempPassword){
-                setPassword(e.target.value)
-                document.getElementById("errorPass2").innerHTML="";
-                
+            setPassword(e.target.value)
+            document.getElementById("errorPass2").innerHTML="";      
         }
         else{
             document.getElementById("errorPass2").innerHTML="passwords don't match";

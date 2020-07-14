@@ -92,7 +92,7 @@ export default function UserArea(props) {
                 }
                 dispatch(updateCost(existingProjectIndex, DollarClass))
             }else{
-                alert("Sorry, this project name is alread in use")
+                alert("Sorry, this project name is already in use")
             }
         }
     }
@@ -105,29 +105,29 @@ export default function UserArea(props) {
         <div className="area">
             <div className="grid-infoProject">
                 <div className="c"></div>
-                        <input className="checkbox del" type="checkbox" onChange={sendInfo}/>
-                        {isOpen? <div className="border-simple grid-projectAddAdminInfo">
-                            <GoTriangleUp className="color-zan cursor" onClick={toggle}/>
-                            <div className="arrow-projectname"><input className="inputTime" type="text" placeholder={props.project.projectName} onChange={(e)=>{setProjectsName(e.target.value)}}/></div>
-                            <FaDollarSign className={DollarClass? "cursor color-zan  arrow-clientname" : "cursor color  arrow-clientname"} onClick={changeClass}/>
-                            <div className="clientinput"><p>Client: </p><input className="inputTime clientinput" type="text" placeholder={props.project.projectClient} onChange={(e)=>{setProjectClient(e.target.value)}}/></div>
-                            <div className="pm"><p>PM: </p><input type="text" className="inputTime" placeholder={props.project.projectManager} onChange={(e)=>{setProjectManager(e.target.value)}}/></div>
-                            <div className="date">Start Date: {props.project.ProjectDate}</div>
-                            <div className="grid-projectAddAdminInfoLast">
-                            <p className="workers">Total Workers: {totalWorkersCalc()}</p>
-                                <p className="status">Status: {convertStatus(props.project.projectStatus)}h</p>
-                                <button className="addButton addAdmin-butt add-butt" onClick={checkUpdates}>Update Info</button>        
-                            </div>
-                            </div> :
-                            <div className="border-simple grid-projectSmallInfo">
-                                <GoTriangleDown className="color-zan cursor arrow" onClick={toggle}/>
-                                <p className="nameproject">{props.project.projectName}</p>
-                                <FaDollarSign className={props.project.projectCost? "color-zan dollarsign" : "color dollarsign"}/>
-                                <p className="clientName">Client: {props.project.projectClient}</p>
-                                <p className="pmanager">PM: {props.project.projectManager}</p>
-                            </div>
-                        }
+                <input className="checkbox del" type="checkbox" onChange={sendInfo}/>
+                {isOpen? <div className="border-simple grid-projectAddAdminInfo">
+                    <GoTriangleUp className="color-zan cursor" onClick={toggle}/>
+                    <div className="arrow-projectname"><input className="inputTime" type="text" placeholder={props.project.projectName} onChange={(e)=>{setProjectsName(e.target.value)}}/></div>
+                    <FaDollarSign className={DollarClass? "cursor color-zan  arrow-clientname" : "cursor color  arrow-clientname"} onClick={changeClass}/>
+                    <div className="clientinput"><p>Client: </p><input className="inputTime clientinput" type="text" placeholder={props.project.projectClient} onChange={(e)=>{setProjectClient(e.target.value)}}/></div>
+                    <div className="pm"><p>PM: </p><input type="text" className="inputTime" placeholder={props.project.projectManager} onChange={(e)=>{setProjectManager(e.target.value)}}/></div>
+                    <div className="date">Start Date: {props.project.ProjectDate}</div>
+                    <div className="grid-projectAddAdminInfoLast">
+                        <p className="workers">Total Workers: {totalWorkersCalc()}</p>
+                        <p className="status">Status: {convertStatus(props.project.projectStatus)}h</p>
+                        <button className="addButton addAdmin-butt add-butt" onClick={checkUpdates}>Update Info</button>        
+                    </div>
+                    </div> :
+                    <div className="border-simple grid-projectSmallInfo">
+                        <GoTriangleDown className="color-zan cursor arrow" onClick={toggle}/>
+                        <p className="nameproject">{props.project.projectName}</p>
+                        <FaDollarSign className={props.project.projectCost? "color-zan dollarsign" : "color dollarsign"}/>
+                        <p className="clientName">Client: {props.project.projectClient}</p>
+                        <p className="pmanager">PM: {props.project.projectManager}</p>
+                    </div>
+                }
+            </div>
         </div>
-    </div>
     )    
 }

@@ -6,7 +6,6 @@ import ProjectRow from './ProjectRow'
 export default function Project() {
     const projectData = useSelector(state => state.Projects);
 
-
     return (
         <div>
             <div className="tableConatainer tableProjects">
